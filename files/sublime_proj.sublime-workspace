@@ -1,0 +1,1040 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"menu",
+				"menuType"
+			],
+			[
+				"con",
+				"containerId"
+			],
+			[
+				"data",
+				"dataObj"
+			],
+			[
+				"add",
+				"addEventListener"
+			],
+			[
+				"get",
+				"getElementById"
+			],
+			[
+				"ge",
+				"getElementById"
+			],
+			[
+				"create",
+				"createTextNode"
+			],
+			[
+				"toda",
+				"todayObj"
+			],
+			[
+				"tod",
+				"todayObj"
+			],
+			[
+				"dat",
+				"dateArr"
+			],
+			[
+				"mon",
+				"monthObj"
+			],
+			[
+				"month",
+				"monthConverter"
+			],
+			[
+				"Ht",
+				"HttpServletRequest"
+			],
+			[
+				"backg",
+				"background-color"
+			],
+			[
+				"jb",
+				"jbtnDown"
+			],
+			[
+				"myNum",
+				"myNum2"
+			],
+			[
+				"My",
+				"MyIntNum"
+			],
+			[
+				"M",
+				"MyIntNum"
+			],
+			[
+				"my",
+				"myNum2"
+			],
+			[
+				"m",
+				"myNum2"
+			],
+			[
+				"cha",
+				"changStr"
+			],
+			[
+				"ab",
+				"absEqual"
+			],
+			[
+				"double",
+				"doubleValue"
+			],
+			[
+				"as",
+				"absEqual"
+			],
+			[
+				"Nu",
+				"NumericFns"
+			],
+			[
+				"wait",
+				"waitForChange"
+			],
+			[
+				"Traffic",
+				"TrafficLightColor"
+			],
+			[
+				"Traffi",
+				"TrafficLightStimulator"
+			],
+			[
+				"sy",
+				"synchronized"
+			],
+			[
+				"Traf",
+				"TrafficLightStimulator"
+			],
+			[
+				"Tra",
+				"TrafficLightColor"
+			],
+			[
+				"Tr",
+				"TRAIN"
+			],
+			[
+				"Interu",
+				"interrupted"
+			],
+			[
+				"he",
+				"helpRdr"
+			],
+			[
+				"Ran",
+				"RandomAccessFile"
+			],
+			[
+				"Que",
+				"QueueEmptyException"
+			],
+			[
+				"pr",
+				"println"
+			],
+			[
+				"change",
+				"changeTable"
+			],
+			[
+				"_calen",
+				"_calendarKey"
+			],
+			[
+				"inc",
+				"include"
+			],
+			[
+				"y",
+				"y"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "ui.js",
+			"settings":
+			{
+				"buffer_size": 912,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "cpu.js",
+			"settings":
+			{
+				"buffer_size": 1342,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "menu.js",
+			"settings":
+			{
+				"buffer_size": 1573,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "// chartDiv is id of container.\n// id will be appointed to the created table.\nfunction Chart(chartDivId, id) {\n   this.id = id || \"none\";\n   this.containerId = chartDivId;\n   this.container = document.getElementById(this.containerId);\n   this.chart = null;\n   this.dataTypes = [\"check\", \"date\"];\n   this.dataNameIndex = [];\n   this.dataTypeIndex = [];\n   this.dataObj = {};\n   this.month;\n   this.year;\n}\nChart.prototype.fillDataObj = function() {\n   var types = this.dataTypes; // Array\n   types.forEach(function(type) {\n      this.dataObj[type] = {};\n   }, this);\n};\n\nChart.prototype.getTypes = function() {\n   var arr = [];\n   this.dataTypes.forEach(function(type){\n      if (type !== \"date\") arr.push(type);\n   });\n   return arr;\n};\nChart.prototype.dataSwitch = function(type) {\n   switch(type) {\n      case \"check\": return checkData;\n      case \"date\": return dateData;\n   }\n};\n\nChart.prototype.createRow = function(type, name) {\n   var dataTypeObj = this.dataSwitch(type);\n   var data = dataTypeObj.makeData(this.year, this.month, name);\n\n   var tr = document.createElement(\"tr\"),\n       td = document.createElement(\"td\"),\n       ele = document.createTextNode(data.name);\n\n   tr.appendChild(td).appendChild(ele);\n\n   each(data.data, function(data) {\n      td = document.createElement(\"td\");\n      ele = dataTypeObj.createInput(data);\n      tr.appendChild(td).appendChild(ele);\n   });\n   return tr;\n};\n\nChart.prototype.addData = function(type, name) {\n   var dataObj = this.dataSwitch(type),\n         data = dataObj.makeData(this.year, this.month, name);\n\n   if (!(name in this.dataObj[type])) { \n      this.dataObj[type][name] = {};\n   }\n   this.dataObj[type][name][this.year + \"_\" + this.month] = data;\n\n   this.dataNameIndex.push(data.name);\n   this.dataTypeIndex.push(data.type);\n};\n\nChart.prototype.newRow = function(type, name) {\n   var row = this.createRow(type, name);\n   this.addData(type, name);\n   \n   this.chart.appendChild(row);\n};\n\nChart.prototype.createTable = function() {\n   var c = document.createElement(\"table\");\n   c.setAttribute(\"id\", this.id);\n   return c;\n};\n\nChart.prototype.setup = function(year, month) {\n   this.changeDate(year, month);\n   this.chart = this.createTable();\n   this.container.appendChild(this.chart);\n   this.newRow(\"date\");\n}\n\nChart.prototype.start = function() {\n   this.fillDataObj();\n   var tObj = date.today();\n   this.setup(tObj.year, tObj.month);\n};\n\nChart.prototype.moveDate = function(year, month) {\n   if (year === undefined) year = 0;\n   var dates = date.monthConverter(this.year + year, this.month + month);\n   this.changeDate(dates.year, dates.month);\n};\n\nChart.prototype.changeDate = function(year, month) {\n   this.month = month;\n   this.year = year;\n   display.date(year, month);\n};",
+			"file": "chart.js",
+			"file_size": 2847,
+			"file_write_time": 130967084318423995,
+			"settings":
+			{
+				"buffer_size": 2746,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "data/checkdata.js",
+			"settings":
+			{
+				"buffer_size": 450,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "data/dateData.js",
+			"settings":
+			{
+				"buffer_size": 664,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "data.js",
+			"settings":
+			{
+				"buffer_size": 1566,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "date.js",
+			"settings":
+			{
+				"buffer_size": 2147,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "addrow_menu.js",
+			"settings":
+			{
+				"buffer_size": 826,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/jumpa/Documents/GitHub/checklists/index.html",
+			"settings":
+			{
+				"buffer_size": 1303,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "functions.js",
+			"settings":
+			{
+				"buffer_size": 1804,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "chart_func.js",
+			"settings":
+			{
+				"buffer_size": 500,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "loadup.js",
+			"settings":
+			{
+				"buffer_size": 306,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "chart.addData should also check if +\n   this.dataObj[type][name][this.year + \"_\" + this.month]\n   already exist. If so, handle it.\n\nmenu.createMenu needs to automatically create rows & columsn &\n   the second column should all be given a class (by class list, not replacing it)\n   of \"submit_value\"\n\nDisallow user from creating row with same name & type as previously\n   created one\n\nPressing enter in menu screen\n\nWas trying to think of adding event listener to table as a whole",
+			"file": "/C/Users/jumpa/Documents/GitHub/checklists/todo.txt",
+			"file_size": 395,
+			"file_write_time": 130966048805856978,
+			"settings":
+			{
+				"buffer_size": 479,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "storage.js",
+			"settings":
+			{
+				"buffer_size": 283,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/jumpa/Documents/GitHub/checklists/files/storage/stor.js",
+		"/C/Users/jumpa/Documents/GitHub/checklists/css/style.css",
+		"/C/Users/jumpa/Documents/GitHub/test/index.html",
+		"/C/Users/jumpa/Documents/GitHub/checklists/files/msg.js",
+		"/C/Users/jumpa/Documents/GitHub/test/files/css/style.css",
+		"/C/Users/jumpa/Documents/GitHub/test/files/elementfunctions.js",
+		"/C/Users/jumpa/Documents/GitHub/test/files/functions.js",
+		"/C/Users/jumpa/Documents/GitHub/checklists/files/data/date.js",
+		"/C/Users/jumpa/Documents/GitHub/checklists/files/data/dateData.js",
+		"/C/Users/jumpa/Documents/GitHub/checklists/files/storObj.js",
+		"/C/Users/jumpa/Documents/GitHub/checklists/log.txt",
+		"/C/Users/jumpa/AppData/Roaming/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/C/Users/jumpa/Documents/GitHub/checklists/files/loadup.js",
+		"/C/Users/jumpa/Documents/index.html",
+		"/C/Users/jumpa/Documents/web.xml",
+		"/C/Users/jumpa/Documents/HelloServet.java",
+		"/C/Users/jumpa/Documents/GitHub/checklists/index.html",
+		"/C/Users/jumpa/Documents/GitHub/test/files/calendar.js",
+		"/C/Users/jumpa/Documents/GitHub/test/files/month.js",
+		"/C/Users/jumpa/Documents/GitHub/checklists/files/dates.js",
+		"/C/Users/jumpa/Documents/GitHub/checklists/files/date.js",
+		"/C/Users/jumpa/Documents/GitHub/checklists/files/date/datechecker.js",
+		"/C/Users/jumpa/Documents/GitHub/checklists/files/date/datecreator.js",
+		"/C/Users/jumpa/Documents/GitHub/checklists/files/date/creator.js",
+		"/C/Users/jumpa/Documents/GitHub/checklists/.gitattributes",
+		"/C/Users/jumpa/Documents/GitHub/todolist/scripts/addMenu.js",
+		"/C/Users/jumpa/Documents/GitHub/todolist/scripts/init.js",
+		"/C/Users/jumpa/Documents/GitHub/todolist/index.html",
+		"/C/Users/jumpa/Documents/GitHub/todolist/.gitignore",
+		"/C/Users/jumpa/Documents/GitHub/todolist/css/style.css",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/StatusWindow.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/MouseEvents.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/ButtonDemo.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/SwingDemo.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/Param.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/Banner.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/AppletSkel.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/SimpleApplet.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/ConstructorRefDemo.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/PredicateInterface.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/testMethodRef.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/MethodRefDemo3.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/reMethodRef2.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/reMethod.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/MethodRef2.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/MethodRef.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/LambdaDemo3.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/VarCapture.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/test2.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/LambdaArgumentDemo.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/LambdaDemo2.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/test.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/GenericFunctInter.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/BlockLambda.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/GenericBlockLambda.java",
+		"/C/Users/jumpa/Documents/GitHub/java/test.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/GenInterfaceDemo.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/RawDemo.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/GenQDemo.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/IGenQ.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/QueueFullException.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/QueueEmptyException.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/GenQueue.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/GenConDemo.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/GenericMethodDem.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/WildCardDemo.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/BoundDemo.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/SimpGen.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/GenDemo.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/EnumDemo4.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/AutoBox2.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/AutoBox3.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/Quadratic.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/Quadratic2.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/AnnotationDemo.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/TrafficLightDemo.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/Wrap.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/AutoWrap.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/EnumDemo3.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/EnumDemo2.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/EnumDemo.java",
+		"/C/Users/jumpa/Documents/GitHub/test/files/load.js",
+		"/C/Users/jumpa/Documents/GitHub/test/files/menu.js",
+		"/C/Users/jumpa/Documents/GitHub/test/files/day.js",
+		"/C/Users/jumpa/Documents/GitHub/test/files/display.js",
+		"/C/Users/jumpa/Documents/GitHub/test/files/cpu.js",
+		"/C/Users/jumpa/Documents/GitHub/test/files/ui.js",
+		"/C/Users/jumpa/Documents/GitHub/test/files/test.js",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/ThreadCom.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/UseMain.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/Suspend.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/Test.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/Sync2.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/Sync.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/PriotitiyDemo.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/JoinThreads.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/MoreThreads_isAlive.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/MoreThreads.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/ExtndThread.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/UseThreadImproved.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/MoreThreads_isAlive.jav",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/UseThreads.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/FileHelp.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/helpfile.txt",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/AvgNums.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/DtoS.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/KtoD.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/RandomAcccess.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/ReadChars.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/ReadLines.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/PrintWriterDemo.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/CopyFile.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/PrintWriter.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/WriteDemo.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/ReadBytes.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/ShowFile3.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/RWData.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/CompFile.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/testdata",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/ShowFile2.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/ShowFile.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/test.txt",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/FixedQueue.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/8/ICharQ.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/QExcDemo.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/ICharQ.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/8/IQDemo.java",
+		"/C/Users/jumpa/Documents/GitHub/java/begg/Exc1.java"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"fillDataObj",
+			"this.month",
+			";\n",
+			"ele",
+			"input",
+			"typeof",
+			"table",
+			"\n   ",
+			"createrow",
+			"append",
+			"index.html",
+			"string",
+			"wait",
+			"reset",
+			"removeTableHandler",
+			"monthText",
+			"v",
+			"monthText",
+			"monthText\n",
+			"monthText",
+			"clicked",
+			"run",
+			"makeDa",
+			"removeinfo",
+			"removemen",
+			"removeinfo",
+			"removemenu",
+			"infoMenu",
+			"infomenu",
+			"difffun",
+			"addmenu",
+			"pages",
+			"menu",
+			"reset",
+			"select",
+			"click",
+			"today",
+			"setToday",
+			"remainingDays",
+			"96",
+			"selected",
+			"getcal",
+			"calendar",
+			"maketabl",
+			"display.create",
+			" \"",
+			"auto",
+			"corre",
+			"tab",
+			"alt",
+			"alt ",
+			"}",
+			"home"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 5,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "ui.js",
+					"settings":
+					{
+						"buffer_size": 912,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								912,
+								912
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 3,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "cpu.js",
+					"settings":
+					{
+						"buffer_size": 1342,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								81,
+								81
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 3,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "menu.js",
+					"settings":
+					{
+						"buffer_size": 1573,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								488,
+								488
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 3,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "chart.js",
+					"settings":
+					{
+						"buffer_size": 2746,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2404,
+								2404
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 3,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1122.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "data/checkdata.js",
+					"settings":
+					{
+						"buffer_size": 450,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								188,
+								188
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 3,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "data/dateData.js",
+					"settings":
+					{
+						"buffer_size": 664,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								661,
+								661
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 3,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 6,
+					"file": "data.js",
+					"settings":
+					{
+						"buffer_size": 1566,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1402,
+								1402
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 3,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 594.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "date.js",
+					"settings":
+					{
+						"buffer_size": 2147,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1180,
+								1180
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 3,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 11.0,
+						"translation.y": 198.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "addrow_menu.js",
+					"settings":
+					{
+						"buffer_size": 826,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								706,
+								706
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 3,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "/C/Users/jumpa/Documents/GitHub/checklists/index.html",
+					"settings":
+					{
+						"buffer_size": 1303,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								541,
+								541
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 3,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 66.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "functions.js",
+					"settings":
+					{
+						"buffer_size": 1804,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								433,
+								433
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 3,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "chart_func.js",
+					"settings":
+					{
+						"buffer_size": 500,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								24,
+								24
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 3,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "loadup.js",
+					"settings":
+					{
+						"buffer_size": 306,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								132,
+								132
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 3,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 13,
+					"file": "/C/Users/jumpa/Documents/GitHub/checklists/todo.txt",
+					"settings":
+					{
+						"buffer_size": 479,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								413,
+								413
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 14,
+					"file": "storage.js",
+					"settings":
+					{
+						"buffer_size": 283,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								259,
+								259
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 3,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 100.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 143.0,
+	"status_bar_visible": true
+}

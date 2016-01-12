@@ -1,0 +1,11 @@
+chart.addData should also check if +
+   this.dataObj[type][name][this.year + "_" + this.month]
+   already exist. If so, handle it.
+
+menu.createMenu needs to automatically create rows & columsn &
+   the second column should all be given a class (by class list, not replacing it)
+   of "submit_value"
+
+Disallow user from creating row with same name & type as previously
+   created one
+
