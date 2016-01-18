@@ -11,6 +11,7 @@ function Chart(chartDivId, id) {
    this.dataObj = {};
    this.month;
    this.year;
+   this.data = undefined;
 }
 Chart.prototype.fillDataObj = function() {
    var types = this.dataTypes; // Array
@@ -81,7 +82,7 @@ Chart.prototype.setup = function(year, month) {
    this.chart = this.createTable();
    this.container.appendChild(this.chart);
    this.newRow("date");
-}
+};
 
 Chart.prototype.start = function() {
    this.fillDataObj();

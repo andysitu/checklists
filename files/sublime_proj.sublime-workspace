@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"name",
+				"nameIndex"
+			],
+			[
+				"typ",
+				"typeIndex"
+			],
+			[
 				"menu",
 				"menuType"
 			],
@@ -196,13 +204,10 @@
 			}
 		},
 		{
-			"contents": "// chartDiv is id of container.\n// id will be appointed to the created table.\nfunction Chart(chartDivId, id) {\n   this.id = id || \"none\";\n   this.containerId = chartDivId;\n   this.container = document.getElementById(this.containerId);\n   this.chart = null;\n   this.dataTypes = [\"check\", \"date\"];\n   this.dataNameIndex = [];\n   this.dataTypeIndex = [];\n   this.dataObj = {};\n   this.month;\n   this.year;\n}\nChart.prototype.fillDataObj = function() {\n   var types = this.dataTypes; // Array\n   types.forEach(function(type) {\n      this.dataObj[type] = {};\n   }, this);\n};\n\nChart.prototype.getTypes = function() {\n   var arr = [];\n   this.dataTypes.forEach(function(type){\n      if (type !== \"date\") arr.push(type);\n   });\n   return arr;\n};\nChart.prototype.dataSwitch = function(type) {\n   switch(type) {\n      case \"check\": return checkData;\n      case \"date\": return dateData;\n   }\n};\n\nChart.prototype.createRow = function(type, name) {\n   var dataTypeObj = this.dataSwitch(type);\n   var data = dataTypeObj.makeData(this.year, this.month, name);\n\n   var tr = document.createElement(\"tr\"),\n       td = document.createElement(\"td\"),\n       ele = document.createTextNode(data.name);\n\n   tr.appendChild(td).appendChild(ele);\n\n   each(data.data, function(data) {\n      td = document.createElement(\"td\");\n      ele = dataTypeObj.createInput(data);\n      tr.appendChild(td).appendChild(ele);\n   });\n   return tr;\n};\n\nChart.prototype.addData = function(type, name) {\n   var dataObj = this.dataSwitch(type),\n         data = dataObj.makeData(this.year, this.month, name);\n\n   if (!(name in this.dataObj[type])) { \n      this.dataObj[type][name] = {};\n   }\n   this.dataObj[type][name][this.year + \"_\" + this.month] = data;\n\n   this.dataNameIndex.push(data.name);\n   this.dataTypeIndex.push(data.type);\n};\n\nChart.prototype.newRow = function(type, name) {\n   var row = this.createRow(type, name);\n   this.addData(type, name);\n   \n   this.chart.appendChild(row);\n};\n\nChart.prototype.createTable = function() {\n   var c = document.createElement(\"table\");\n   c.setAttribute(\"id\", this.id);\n   return c;\n};\n\nChart.prototype.setup = function(year, month) {\n   this.changeDate(year, month);\n   this.chart = this.createTable();\n   this.container.appendChild(this.chart);\n   this.newRow(\"date\");\n}\n\nChart.prototype.start = function() {\n   this.fillDataObj();\n   var tObj = date.today();\n   this.setup(tObj.year, tObj.month);\n};\n\nChart.prototype.moveDate = function(year, month) {\n   if (year === undefined) year = 0;\n   var dates = date.monthConverter(this.year + year, this.month + month);\n   this.changeDate(dates.year, dates.month);\n};\n\nChart.prototype.changeDate = function(year, month) {\n   this.month = month;\n   this.year = year;\n   display.date(year, month);\n};",
 			"file": "chart.js",
-			"file_size": 2847,
-			"file_write_time": 130967084318423995,
 			"settings":
 			{
-				"buffer_size": 2746,
+				"buffer_size": 2706,
 				"line_ending": "Windows"
 			}
 		},
@@ -210,7 +215,7 @@
 			"file": "data/checkdata.js",
 			"settings":
 			{
-				"buffer_size": 450,
+				"buffer_size": 692,
 				"line_ending": "Windows"
 			}
 		},
@@ -218,7 +223,15 @@
 			"file": "data/dateData.js",
 			"settings":
 			{
-				"buffer_size": 664,
+				"buffer_size": 641,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "chart_test.js",
+			"settings":
+			{
+				"buffer_size": 418,
 				"line_ending": "Windows"
 			}
 		},
@@ -226,7 +239,7 @@
 			"file": "data.js",
 			"settings":
 			{
-				"buffer_size": 1566,
+				"buffer_size": 1787,
 				"line_ending": "Windows"
 			}
 		},
@@ -250,7 +263,7 @@
 			"file": "/C/Users/jumpa/Documents/GitHub/checklists/index.html",
 			"settings":
 			{
-				"buffer_size": 1303,
+				"buffer_size": 1350,
 				"line_ending": "Windows"
 			}
 		},
@@ -537,7 +550,7 @@
 	"groups":
 	[
 		{
-			"selected": 5,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -580,8 +593,8 @@
 						"selection":
 						[
 							[
-								81,
-								81
+								103,
+								103
 							]
 						],
 						"settings":
@@ -629,15 +642,15 @@
 					"file": "chart.js",
 					"settings":
 					{
-						"buffer_size": 2746,
+						"buffer_size": 2706,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2404,
-								2404
+								1900,
+								1900
 							]
 						],
 						"settings":
@@ -657,15 +670,15 @@
 					"file": "data/checkdata.js",
 					"settings":
 					{
-						"buffer_size": 450,
+						"buffer_size": 692,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								188,
-								188
+								617,
+								617
 							]
 						],
 						"settings":
@@ -685,15 +698,15 @@
 					"file": "data/dateData.js",
 					"settings":
 					{
-						"buffer_size": 664,
+						"buffer_size": 641,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								661,
-								661
+								563,
+								563
 							]
 						],
 						"settings":
@@ -716,18 +729,44 @@
 			[
 				{
 					"buffer": 6,
-					"file": "data.js",
+					"file": "chart_test.js",
 					"settings":
 					{
-						"buffer_size": 1566,
+						"buffer_size": 418,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1402,
-								1402
+								280,
+								280
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "data.js",
+					"settings":
+					{
+						"buffer_size": 1787,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								169,
+								169
 							]
 						],
 						"settings":
@@ -737,13 +776,13 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 594.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 8,
 					"file": "date.js",
 					"settings":
 					{
@@ -765,13 +804,13 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 11.0,
-						"translation.y": 198.0,
+						"translation.y": 528.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 9,
 					"file": "addrow_menu.js",
 					"settings":
 					{
@@ -799,19 +838,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 9,
+					"buffer": 10,
 					"file": "/C/Users/jumpa/Documents/GitHub/checklists/index.html",
 					"settings":
 					{
-						"buffer_size": 1303,
+						"buffer_size": 1350,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								541,
-								541
+								440,
+								440
 							]
 						],
 						"settings":
@@ -821,13 +860,13 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 66.0,
+						"translation.y": 132.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 10,
+					"buffer": 11,
 					"file": "functions.js",
 					"settings":
 					{
@@ -849,13 +888,13 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 528.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 11,
+					"buffer": 12,
 					"file": "chart_func.js",
 					"settings":
 					{
@@ -883,7 +922,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 12,
+					"buffer": 13,
 					"file": "loadup.js",
 					"settings":
 					{
@@ -894,8 +933,8 @@
 						"selection":
 						[
 							[
-								132,
-								132
+								39,
+								39
 							]
 						],
 						"settings":
@@ -911,7 +950,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 13,
+					"buffer": 14,
 					"file": "/C/Users/jumpa/Documents/GitHub/checklists/todo.txt",
 					"settings":
 					{
@@ -938,7 +977,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 14,
+					"buffer": 15,
 					"file": "storage.js",
 					"settings":
 					{

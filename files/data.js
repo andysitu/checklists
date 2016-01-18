@@ -1,5 +1,6 @@
-function Data(year, month, id) {
+function Data(id, year, month) {
    this.id = id;
+   this.types = ["check", "date"];
    this.year = year;
    this.month = month;
    this.dataSet = {};
@@ -63,6 +64,9 @@ Data.prototype.loadData = function() {
    if (data !== null)
       this.dataSet = data;
 };
+Data.prototype.getData = function(name) {
+   return this.dataSet[name][data];
+}
 
 Data.prototype.typeSwitch = function(type) {
    switch(type) {
@@ -70,9 +74,10 @@ Data.prototype.typeSwitch = function(type) {
       case "date": return dateData;
    }
 };
-
-var t;
-window.addEventListener("load", function() {
-   var today = date.today();
-   t = new Data(today.year, today.month, "test");
-});
+Data.prototype.getTypes = function() {
+   var arr = [];
+   this.types.forEach(function(type){
+      if (type !== "date") arr.push(type);
+   });
+   return arr;
+};
