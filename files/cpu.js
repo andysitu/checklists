@@ -1,47 +1,74 @@
 // Handles which functions to run.
+var t;
 
-var cpu = {
-   _mainChart: null,
-   menuStatus: false,
-   start() {
-      this._mainChart = new Chart("mainChartDiv", "mainChart");
-      this._mainChart.start();
-   },
-   proc(procFunction) {
-   // cpu methods go thru this to run necessary functions
-   // beforehand (ex. close menu);
-      menu.close();
+function CPU(name) {
+   this.name = name;
+   var today = date.today();
+   t = this.dataHandler = new DataHandler(name, today.year, today.month, [{name: "Date", type: "date"}]);
+   this.tableHandler = new TableHandler(this, name);
+   this.load();
+}
 
-      var arg = [];
-      for (var i = 1, len = arguments.length; i < len; i++)
-         arg.push(arguments[i]);
-      return procFunction.apply(undefined, arg);
-   },
-   addRow(type, name) {
-      if (name === undefined) menu.createMenu(addRow_menu);
-      else cpu._mainChart.newRow(type, name);
-   },
-   delRow() {
-      this.proc(display.msg, "Need to delete the row selected by user");
-   },
-   nextMonth() {
-      this.proc(display.msg, "Need to move to next Month");
-   },
-   prevMonth() {
-      this.proc(display.msg, "Need to move to prev Month");
-   },
-   getTypes() {
-      return this.proc(function(){ return cpu._mainChart.getTypes(); });
-   },
-   save() {
-      this.proc(display.msg, "Need to add save feature.");
-   },
-   showData() {
-      var t = cpu;
-      var mC = cpu._mainChart;
-      console.log("Year: " + mC.year + " Month: " + mC.month +
-         "\nChart: " + mC.chart +
-         "\nDate Names: " + mC.dataNameIndex +
-         "\nData Types: " + mC.dataTypeIndex);
-   }
+CPU.prototype.load = function() {
+   this.tableHandler.load();
+   this.displayDate();
+   this.dataIntoTable();
+};
+
+CPU.prototype.dataIntoTable = function() {
+   var index = this.dataHandler.getIndex();
+   each(index, function(indexElement) {
+      var name = indexElement.name,
+            type = indexElement.type;
+      var eleArr = this.dataHandler.dataToEle(name, type);
+      this.tableHandler.createRow(name, type, eleArr);
+   }, this);
+};
+
+CPU.prototype.createAddRowMenu = function(name, type) {
+   menu.createMenu(this, addRow_menu);
+};
+
+CPU.prototype.delRow = function() {
+   console.log("Testing");
+};
+
+CPU.prototype.getTypes = function() {
+   return this.dataHandler.getTypes();
+};
+
+CPU.prototype.addRow = function(name, type) {
+   this.dataHandler.add(name, type);
+   var eleArr = this.dataHandler.dataToEle(name, type);
+   this.tableHandler.createRow(name, type, eleArr);
+};
+
+CPU.prototype.displayDate = function() {
+   var date = this.dataHandler.getDate();
+   display.date(date.year, date.month);
+};
+
+CPU.prototype.loadData = function() {
+   var index = this.dataHandler.getIndex();
+   console.log(index);
+};
+
+CPU.prototype.showData = function() {
+   console.log(this.dataHandler.dataSet);
+};
+
+CPU.prototype.changeDate = function(year, month) {
+   this.dataHandler.changeDate(year, month);
+   this.load();
+};
+
+CPU.prototype.nextMonth = function(){this.changeDate(1);};
+CPU.prototype.prevMonth = function(){this.changeDate(-1);};
+CPU.prototype.today = function() {
+   var today = date.today();
+   this.changeDate(today.year, today.month);
+};
+
+CPU.prototype.clicked = function(name, cellNum) {
+   console.log(name, cellNum);
 };

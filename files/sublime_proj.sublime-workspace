@@ -4,6 +4,38 @@
 		"selected_items":
 		[
 			[
+				"pArr",
+				"pArrayWithString"
+			],
+			[
+				"create",
+				"createElement"
+			],
+			[
+				"index",
+				"indexElement"
+			],
+			[
+				"proto",
+				"prototype"
+			],
+			[
+				"displ",
+				"displayDate"
+			],
+			[
+				"Dat",
+				"DataHandler"
+			],
+			[
+				"data",
+				"dataHandler"
+			],
+			[
+				"addRo",
+				"addRow_menu"
+			],
+			[
 				"name",
 				"nameIndex"
 			],
@@ -20,10 +52,6 @@
 				"containerId"
 			],
 			[
-				"data",
-				"dataObj"
-			],
-			[
 				"add",
 				"addEventListener"
 			],
@@ -34,10 +62,6 @@
 			[
 				"ge",
 				"getElementById"
-			],
-			[
-				"create",
-				"createTextNode"
 			],
 			[
 				"toda",
@@ -180,10 +204,18 @@
 	"buffers":
 	[
 		{
+			"file": "loadup.js",
+			"settings":
+			{
+				"buffer_size": 350,
+				"line_ending": "Windows"
+			}
+		},
+		{
 			"file": "ui.js",
 			"settings":
 			{
-				"buffer_size": 912,
+				"buffer_size": 1040,
 				"line_ending": "Windows"
 			}
 		},
@@ -191,31 +223,7 @@
 			"file": "cpu.js",
 			"settings":
 			{
-				"buffer_size": 1342,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "menu.js",
-			"settings":
-			{
-				"buffer_size": 1573,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "chart.js",
-			"settings":
-			{
-				"buffer_size": 2706,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "data/checkdata.js",
-			"settings":
-			{
-				"buffer_size": 692,
+				"buffer_size": 1884,
 				"line_ending": "Windows"
 			}
 		},
@@ -228,18 +236,82 @@
 			}
 		},
 		{
-			"file": "chart_test.js",
+			"file": "data/checkdata.js",
 			"settings":
 			{
-				"buffer_size": 418,
+				"buffer_size": 748,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "data.js",
+			"file": "display.js",
 			"settings":
 			{
-				"buffer_size": 1787,
+				"buffer_size": 274,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/jumpa/Documents/GitHub/checklists/css/style.css",
+			"settings":
+			{
+				"buffer_size": 371,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "chart.js",
+			"settings":
+			{
+				"buffer_size": 2131,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "datahandler.js",
+			"settings":
+			{
+				"buffer_size": 3715,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "tablehandler.js",
+			"settings":
+			{
+				"buffer_size": 1924,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "menu.js",
+			"settings":
+			{
+				"buffer_size": 1830,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "addrow_menu.js",
+			"settings":
+			{
+				"buffer_size": 855,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/jumpa/Documents/GitHub/checklists/index.html",
+			"settings":
+			{
+				"buffer_size": 1388,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "functions.js",
+			"settings":
+			{
+				"buffer_size": 1979,
 				"line_ending": "Windows"
 			}
 		},
@@ -252,30 +324,6 @@
 			}
 		},
 		{
-			"file": "addrow_menu.js",
-			"settings":
-			{
-				"buffer_size": 826,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/C/Users/jumpa/Documents/GitHub/checklists/index.html",
-			"settings":
-			{
-				"buffer_size": 1350,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "functions.js",
-			"settings":
-			{
-				"buffer_size": 1804,
-				"line_ending": "Windows"
-			}
-		},
-		{
 			"file": "chart_func.js",
 			"settings":
 			{
@@ -284,29 +332,10 @@
 			}
 		},
 		{
-			"file": "loadup.js",
-			"settings":
-			{
-				"buffer_size": 306,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"contents": "chart.addData should also check if +\n   this.dataObj[type][name][this.year + \"_\" + this.month]\n   already exist. If so, handle it.\n\nmenu.createMenu needs to automatically create rows & columsn &\n   the second column should all be given a class (by class list, not replacing it)\n   of \"submit_value\"\n\nDisallow user from creating row with same name & type as previously\n   created one\n\nPressing enter in menu screen\n\nWas trying to think of adding event listener to table as a whole",
 			"file": "/C/Users/jumpa/Documents/GitHub/checklists/todo.txt",
-			"file_size": 395,
-			"file_write_time": 130966048805856978,
 			"settings":
 			{
-				"buffer_size": 479,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "storage.js",
-			"settings":
-			{
-				"buffer_size": 283,
+				"buffer_size": 217,
 				"line_ending": "Windows"
 			}
 		}
@@ -335,11 +364,19 @@
 	},
 	"file_history":
 	[
+		"/C/Users/jumpa/Documents/GitHub/loan-calculating/files/table.js",
+		"/C/Users/jumpa/Documents/GitHub/test/files/css/style.css",
+		"/C/Users/jumpa/Documents/GitHub/checklists/files/data/checkdata.js",
+		"/C/Users/jumpa/Documents/GitHub/checklists/files/sublime_proj.sublime-project",
+		"/C/Users/jumpa/Documents/GitHub/checklists/files/table.js",
+		"/C/Users/jumpa/Documents/GitHub/checklists/files/storage.js",
+		"/C/Users/jumpa/Documents/GitHub/checklists/files/cpu.js",
+		"/C/Users/jumpa/Documents/GitHub/checklists/files/chart_test.js",
+		"/C/Users/jumpa/Documents/GitHub/checklists/files/chart_table.js",
 		"/C/Users/jumpa/Documents/GitHub/checklists/files/storage/stor.js",
 		"/C/Users/jumpa/Documents/GitHub/checklists/css/style.css",
 		"/C/Users/jumpa/Documents/GitHub/test/index.html",
 		"/C/Users/jumpa/Documents/GitHub/checklists/files/msg.js",
-		"/C/Users/jumpa/Documents/GitHub/test/files/css/style.css",
 		"/C/Users/jumpa/Documents/GitHub/test/files/elementfunctions.js",
 		"/C/Users/jumpa/Documents/GitHub/test/files/functions.js",
 		"/C/Users/jumpa/Documents/GitHub/checklists/files/data/date.js",
@@ -454,15 +491,7 @@
 		"/C/Users/jumpa/Documents/GitHub/java/begg/RWData.java",
 		"/C/Users/jumpa/Documents/GitHub/java/begg/CompFile.java",
 		"/C/Users/jumpa/Documents/GitHub/java/begg/testdata",
-		"/C/Users/jumpa/Documents/GitHub/java/begg/ShowFile2.java",
-		"/C/Users/jumpa/Documents/GitHub/java/begg/ShowFile.java",
-		"/C/Users/jumpa/Documents/GitHub/java/begg/test.txt",
-		"/C/Users/jumpa/Documents/GitHub/java/begg/FixedQueue.java",
-		"/C/Users/jumpa/Documents/GitHub/java/begg/8/ICharQ.java",
-		"/C/Users/jumpa/Documents/GitHub/java/begg/QExcDemo.java",
-		"/C/Users/jumpa/Documents/GitHub/java/begg/ICharQ.java",
-		"/C/Users/jumpa/Documents/GitHub/java/begg/8/IQDemo.java",
-		"/C/Users/jumpa/Documents/GitHub/java/begg/Exc1.java"
+		"/C/Users/jumpa/Documents/GitHub/java/begg/ShowFile2.java"
 	],
 	"find":
 	{
@@ -480,6 +509,42 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"function",
+			"check",
+			"today",
+			"load",
+			"getdat",
+			"gettype",
+			"getTyp",
+			"getdata",
+			"display",
+			"typeSwitch",
+			"cpu",
+			"Data.",
+			"Table.",
+			"table",
+			"dataset",
+			"data",
+			"t",
+			"add",
+			"addIndex",
+			"\"date\"",
+			"\"date",
+			"type, name",
+			"type,",
+			"type, name",
+			"type,",
+			"nameIndex",
+			"this.id",
+			"ChartTable",
+			"id",
+			"container",
+			");\n",
+			"fillDataObj",
+			"add",
+			"addData",
+			"data",
+			"mainchart",
 			"fillDataObj",
 			"this.month",
 			";\n",
@@ -540,6 +605,13 @@
 		"regex": false,
 		"replace_history":
 		[
+			"getDataWrapper",
+			"mainCPU",
+			"DataHandler.",
+			"TableHandler.",
+			"name, type",
+			"index",
+			"Table"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -550,23 +622,23 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "ui.js",
+					"file": "loadup.js",
 					"settings":
 					{
-						"buffer_size": 912,
+						"buffer_size": 350,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								912,
-								912
+								306,
+								306
 							]
 						],
 						"settings":
@@ -583,18 +655,18 @@
 				},
 				{
 					"buffer": 1,
-					"file": "cpu.js",
+					"file": "ui.js",
 					"settings":
 					{
-						"buffer_size": 1342,
+						"buffer_size": 1040,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								103,
-								103
+								643,
+								643
 							]
 						],
 						"settings":
@@ -611,18 +683,46 @@
 				},
 				{
 					"buffer": 2,
-					"file": "menu.js",
+					"file": "cpu.js",
 					"settings":
 					{
-						"buffer_size": 1573,
+						"buffer_size": 1884,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								488,
-								488
+								1884,
+								1884
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 3,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1001.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "data/dateData.js",
+					"settings":
+					{
+						"buffer_size": 641,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								641,
+								641
 							]
 						],
 						"settings":
@@ -638,47 +738,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "chart.js",
-					"settings":
-					{
-						"buffer_size": 2706,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1900,
-								1900
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 3,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1122.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
 					"buffer": 4,
 					"file": "data/checkdata.js",
 					"settings":
 					{
-						"buffer_size": 692,
+						"buffer_size": 748,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								617,
-								617
+								400,
+								400
 							]
 						],
 						"settings":
@@ -695,52 +767,18 @@
 				},
 				{
 					"buffer": 5,
-					"file": "data/dateData.js",
+					"file": "display.js",
 					"settings":
 					{
-						"buffer_size": 641,
+						"buffer_size": 274,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								563,
-								563
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 3,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 0,
-			"sheets":
-			[
-				{
-					"buffer": 6,
-					"file": "chart_test.js",
-					"settings":
-					{
-						"buffer_size": 418,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								280,
-								280
+								274,
+								241
 							]
 						],
 						"settings":
@@ -754,19 +792,53 @@
 					"type": "text"
 				},
 				{
-					"buffer": 7,
-					"file": "data.js",
+					"buffer": 6,
+					"file": "/C/Users/jumpa/Documents/GitHub/checklists/css/style.css",
 					"settings":
 					{
-						"buffer_size": 1787,
+						"buffer_size": 371,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								169,
-								169
+								105,
+								105
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 7,
+					"file": "chart.js",
+					"settings":
+					{
+						"buffer_size": 2131,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								511,
+								519
 							]
 						],
 						"settings":
@@ -783,18 +855,18 @@
 				},
 				{
 					"buffer": 8,
-					"file": "date.js",
+					"file": "datahandler.js",
 					"settings":
 					{
-						"buffer_size": 2147,
+						"buffer_size": 3715,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1180,
-								1180
+								2999,
+								2999
 							]
 						],
 						"settings":
@@ -803,26 +875,82 @@
 							"tab_size": 3,
 							"translate_tabs_to_spaces": true
 						},
-						"translation.x": 11.0,
-						"translation.y": 528.0,
+						"translation.x": 0.0,
+						"translation.y": 2058.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 9,
-					"file": "addrow_menu.js",
+					"file": "tablehandler.js",
 					"settings":
 					{
-						"buffer_size": 826,
+						"buffer_size": 1924,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								706,
-								706
+								772,
+								772
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "menu.js",
+					"settings":
+					{
+						"buffer_size": 1830,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								540,
+								540
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 3,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 68.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "addrow_menu.js",
+					"settings":
+					{
+						"buffer_size": 855,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								155,
+								155
 							]
 						],
 						"settings":
@@ -838,19 +966,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 10,
+					"buffer": 12,
 					"file": "/C/Users/jumpa/Documents/GitHub/checklists/index.html",
 					"settings":
 					{
-						"buffer_size": 1350,
+						"buffer_size": 1388,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								440,
-								440
+								50,
+								50
 							]
 						],
 						"settings":
@@ -860,17 +988,17 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 132.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 11,
+					"buffer": 13,
 					"file": "functions.js",
 					"settings":
 					{
-						"buffer_size": 1804,
+						"buffer_size": 1979,
 						"regions":
 						{
 						},
@@ -888,62 +1016,6 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 528.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 12,
-					"file": "chart_func.js",
-					"settings":
-					{
-						"buffer_size": 500,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								24,
-								24
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 3,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 13,
-					"file": "loadup.js",
-					"settings":
-					{
-						"buffer_size": 306,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								39,
-								39
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 3,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
@@ -951,24 +1023,25 @@
 				},
 				{
 					"buffer": 14,
-					"file": "/C/Users/jumpa/Documents/GitHub/checklists/todo.txt",
+					"file": "date.js",
 					"settings":
 					{
-						"buffer_size": 479,
+						"buffer_size": 2147,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								413,
-								413
+								349,
+								349
 							]
 						],
 						"settings":
 						{
-							"auto_name": "",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 3,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -978,10 +1051,10 @@
 				},
 				{
 					"buffer": 15,
-					"file": "storage.js",
+					"file": "chart_func.js",
 					"settings":
 					{
-						"buffer_size": 283,
+						"buffer_size": 500,
 						"regions":
 						{
 						},
@@ -997,6 +1070,33 @@
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"tab_size": 3,
 							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 16,
+					"file": "/C/Users/jumpa/Documents/GitHub/checklists/todo.txt",
+					"settings":
+					{
+						"buffer_size": 217,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								82,
+								82
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,

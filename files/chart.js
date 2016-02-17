@@ -3,16 +3,20 @@
 function Chart(chartDivId, id) {
    this.id = id;
    this.containerId = chartDivId;
-   this.container = document.getElementById(this.containerId);
    this.chart = null;
    this.dataTypes = ["check", "date"];
-   this.dataNameIndex = [];
-   this.dataTypeIndex = [];
    this.dataObj = {};
    this.month;
    this.year;
-   this.data = undefined;
+
+   this.dataHandler = null;
+   this.tableHandler = null;
 }
+
+Chart.prototype.getTypes = function() {
+   return this.data.getTypes();
+};
+
 Chart.prototype.fillDataObj = function() {
    var types = this.dataTypes; // Array
    types.forEach(function(type) {
@@ -20,21 +24,7 @@ Chart.prototype.fillDataObj = function() {
    }, this);
 };
 
-Chart.prototype.getTypes = function() {
-   var arr = [];
-   this.dataTypes.forEach(function(type){
-      if (type !== "date") arr.push(type);
-   });
-   return arr;
-};
-Chart.prototype.dataSwitch = function(type) {
-   switch(type) {
-      case "check": return checkData;
-      case "date": return dateData;
-   }
-};
-
-Chart.prototype.createRow = function(type, name) {
+Chart.prototype.createRow = function(name, type) {
    var dataTypeObj = this.dataSwitch(type);
    var data = dataTypeObj.makeData(this.year, this.month, name);
 
@@ -52,40 +42,28 @@ Chart.prototype.createRow = function(type, name) {
    return tr;
 };
 
-Chart.prototype.addData = function(type, name) {
-   var dataObj = this.dataSwitch(type),
-         data = dataObj.makeData(this.year, this.month, name);
+Chart.prototype.addRow = function(name, type) {
+   var data = this.dataHandler.add(name, type);
 
-   if (!(name in this.dataObj[type])) { 
-      this.dataObj[type][name] = {};
-   }
-   this.dataObj[type][name][this.year + "_" + this.month] = data;
-
-   this.dataNameIndex.push(data.name);
-   this.dataTypeIndex.push(data.type);
 };
 
-Chart.prototype.newRow = function(type, name) {
-   var row = this.createRow(type, name);
-   this.addData(type, name);
+Chart.prototype.newRow = function(name, type) {
+   var row = this.createRow(name, type);
+   this.addData(name, type);
    
    this.chart.appendChild(row);
 };
 
-Chart.prototype.createTable = function() {
-   var c = makeElement("table", {id: this.id});
-   return c;
-};
-
 Chart.prototype.setup = function(year, month) {
    this.changeDate(year, month);
-   this.chart = this.createTable();
-   this.container.appendChild(this.chart);
-   this.newRow("date");
+   if (this.dataHandler === null)
+      this.dataHandler = new DataHandler(this.id, this.year, this.month);
+   if (this.tableHandler === null)
+      this.tableHandler = new TableHandler(this.id, this.containerId);
 };
 
 Chart.prototype.start = function() {
-   this.fillDataObj();
+   // this.fillDataObj();
    var tObj = date.today();
    this.setup(tObj.year, tObj.month);
 };

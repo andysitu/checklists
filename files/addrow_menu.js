@@ -1,9 +1,11 @@
 var addRow_menu = {
+   cpu: null,
    createName() {
+      var types = this.cpu.getTypes();
       return makeElement("input", {id: "nameMenu"});
    },
    createType_select() {
-      var types = cpu.getTypes();
+      var types = this.cpu.getTypes();
       var typeSelect = makeElement("select", {id: "menuType"});
       types.forEach(function(type) {
          typeSelect.appendChild( makeElement("option", {}, type) );
@@ -18,11 +20,11 @@ var addRow_menu = {
             type = document.getElementById("menuType").value;
 
       nameBox.value = "";
-      // var submissions = document.querySelectorAll(".submit_value");
-
-      cpu.addRow(type, name);
+      
+      this.cpu.addRow(name, type);
    },
-   create() {
+   create(cpuRef) {
+      this.cpu = cpuRef;
       return [
             {Name: this.createName()}, 
             {Type: this.createType_select()}

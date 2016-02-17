@@ -1,11 +1,15 @@
 var menu = {
    div: undefined,
-   createMenu(menuType) {
-   /* Uses "submenus" objects (ex. addrow_menu.js) &
+   currentMenuType: undefined,
+   createMenu(cpuRef, menuType) {
+   /* menuType => addRow_menu
+      Uses "submenus" objects (ex. addrow_menu.js) &
       adds in table. Finally has submit & close button added at the end.
       Submit function depends on submenuObj.submitting 
    */
-      var submenus = menuType.create(),
+      this.currentMenuType = menuType;
+
+      var submenus = menuType.create(cpuRef),
          table = makeElement("table", {id: "menuTable"});
 
       submenus.forEach(function(submenuObj, index) {
@@ -31,6 +35,7 @@ var menu = {
          var menu = document.getElementById("menu");
          document.body.removeChild(menu);
          this.div = undefined;
+         this.currentMenuType = undefined;
       }
    },
    createCloseButton() {
@@ -41,7 +46,12 @@ var menu = {
    },
    createSubmitButton(menuType) {
       var subBut = makeElement("input", {type:"submit", id: "submitMenu"});
-      subBut.addEventListener("click", menuType.submitting);
+      subBut.addEventListener("click", this.submit.bind(this));
       return subBut;
+   },
+   submit(menuType) {
+      this.currentMenuType.submitting();
+      this.close();
+      
    }
 };

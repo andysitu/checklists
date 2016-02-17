@@ -1,4 +1,4 @@
-var checkData = {
+var clickData = {
    makeData(year, month, name) {
       var i = 1, len = date.lastDayInMonth(year, month);
       var arr = [];
@@ -12,9 +12,10 @@ var checkData = {
       };
    },
    createInput(data) {
-      var ele = document.createElement("input");
-      ele.type = "checkbox";
-      if (data >= 1) ele.checked = true;
+      var ele = document.createElement("div");
+      // var ele = document.createElement("input");
+      // ele.type = "checkbox";
+      // if (data >= 1) ele.checked = true;
       return ele;
    },
    create(year, month, name) {

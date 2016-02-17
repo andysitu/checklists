@@ -1,31 +1,31 @@
-function tester() {
-   console.log("HI");
-}
-
-// loadup.js runs all methods with each function
+// loadup.js runs start methods of each obj first.
 var ui = {
    addRow() {
       var button = document.getElementById("addRow");
-      button.addEventListener("click", cpu.addRow.bind(cpu));
+      button.addEventListener("click", mainCPU.createAddRowMenu.bind(mainCPU));
    },
    delRow() {
       var b = document.getElementById("deleteRow");
-      b.addEventListener("click", cpu.delRow.bind(cpu))
+      b.addEventListener("click", mainCPU.delRow)
    },
    nextMonth() {
       var button = document.getElementById("nextMonth");
-      button.addEventListener("click", cpu.nextMonth.bind(cpu));
+      button.addEventListener("click", mainCPU.nextMonth.bind(mainCPU));
    },
    prevMonth() {
       var button = document.getElementById("prevMonth");
-      button.addEventListener("click", cpu.prevMonth.bind(cpu));
+      button.addEventListener("click", mainCPU.prevMonth.bind(mainCPU));
+   },
+   today() {
+      var button = document.getElementById("today");
+      button.addEventListener("click", mainCPU.today.bind(mainCPU));
    },
    showData() {
       var b = document.getElementById("showData");
-      b.addEventListener("click", cpu.showData.bind(cpu));
+      b.addEventListener("click", mainCPU.showData.bind(mainCPU));
    },
    save() {
       var b = document.getElementById("save");
-      b.addEventListener("click", cpu.save.bind(cpu));
+      b.addEventListener("click", mainCPU.save);
    }
 };

@@ -32,13 +32,18 @@ function map(obj, callback, context) {
 }
 
 function makeElement(type, attributes) {
+   // Makes an element with type & attributes (if defined).
+   // Will append elements in parameters after attributes.
    var element = document.createElement(type);
 
-   for (var attr in attributes) {
-      if (attributes.hasOwnProperty(attr)) {
-         element.setAttribute(attr, attributes[attr]);
+   if (attributes !== undefined) {
+      for (var attr in attributes) {
+         if (attributes.hasOwnProperty(attr)) {
+            element.setAttribute(attr, attributes[attr]);
+         }
       }
    }
+
    for (var i = 2, len = arguments.length; i < len; i++) {
       var child = arguments[i];
       if (typeof child === "string" || typeof child === "number")

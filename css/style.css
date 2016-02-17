@@ -1,3 +1,12 @@
+#mainTable td, th  {
+  border: 1px solid;
+}
+
+table {
+  border-collapse: collapse;
+  padding: 0;
+}
+
 body {
 }
 

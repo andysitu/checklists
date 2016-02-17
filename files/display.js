@@ -5,6 +5,6 @@ var display = {
    },
    date(year, month) {
       var dateDiv = document.getElementById("dateDiv");
-      dateDiv.textContent = "Month: " + date.numToText(month) + " Year: " + year;
+      dateDiv.textContent = date.numToText(month) + " " + year;
    }
 };
