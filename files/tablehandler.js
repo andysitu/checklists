@@ -63,3 +63,8 @@ TableHandler.prototype.createRow = function(name, type, eleArr) {
     this.rowsIndex.push(name)
   }
 };
+
+TableHandler.prototype.changeCell = function(name, cellNum, newElement) {
+  var ele = document.getElementById(name + "_" + cellNum);
+  ele.replaceChild(newElement, ele.firstChild)
+}
