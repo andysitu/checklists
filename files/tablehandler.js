@@ -32,7 +32,7 @@ TableHandler.prototype.clicked =function(e) {
   var id = e.target.id;
   if ( /\w+_\d+/.test(id) ) {
     var idArr = id.match(/(\w+)_(\d+)/);
-    if (idArr !== null) {
+    if (idArr !== null && !(/_/.test(idArr[1])) ) {
       var name = idArr[1], cellNum = idArr[2];
 
       this.cpu.clicked(name, cellNum);
@@ -54,7 +54,7 @@ TableHandler.prototype.createRow = function(name, type, eleArr) {
     tr.appendChild(td).appendChild(ele);
 
     each(eleArr, function(element, i) {
-      td = makeElement("td", {id: name + "Cell_" + i});
+      td = makeElement("td", {id: name + "_Cell_" + i});
       tr.appendChild(td).appendChild(element);  
     });
 
@@ -66,6 +66,6 @@ TableHandler.prototype.createRow = function(name, type, eleArr) {
 
 TableHandler.prototype.changeCell = function(name, cellNum, newElement) {
   var ele = document.getElementById(name + "_" + cellNum),
-      td = document.getElementById(name + "Cell_" + cellNum);
+      td = document.getElementById(name + "_Cell_" + cellNum);
   td.replaceChild(newElement, ele);
 };
