@@ -13,7 +13,7 @@ var dateData = {
       };
    },
    createInput(date) {
-      return document.createTextNode(date); 
+      return makeElement("div", {}, document.createTextNode(date)); 
    },
    clicked(date) {
       // Does nothing.
