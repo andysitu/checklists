@@ -20,7 +20,7 @@ CPU.prototype.dataIntoTable = function() {
    each(nameIndex, function(nameIndexElement) {
       var name = nameIndexElement.name,
             type = nameIndexElement.type;
-      var eleArr = this.dataHandler.dataToEle(name, type);
+      var eleArr = this.dataHandler.dataArrToEle(name, type);
       this.tableHandler.createRow(name, type, eleArr);
    }, this);
 };
@@ -39,7 +39,7 @@ CPU.prototype.getTypes = function() {
 
 CPU.prototype.addRow = function(name, type) {
    this.dataHandler.add(name, type);
-   var eleArr = this.dataHandler.dataToEle(name, type);
+   var eleArr = this.dataHandler.dataArrToEle(name, type);
    this.tableHandler.createRow(name, type, eleArr);
 };
 
@@ -72,5 +72,4 @@ CPU.prototype.today = function() {
 CPU.prototype.clicked = function(name, cellNum) {
    var newElement = this.dataHandler.clicked(name, cellNum);
    this.tableHandler.changeCell(name, cellNum, newElement);
-   console.log(newElement);
 };
