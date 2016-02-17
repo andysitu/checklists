@@ -13,10 +13,14 @@ var clickData = {
    },
    createInput(data) {
       var ele = document.createElement("div");
-      // var ele = document.createElement("input");
-      // ele.type = "checkbox";
-      // if (data >= 1) ele.checked = true;
+      if (data == 1)
+         ele.classList.add("clicked");
       return ele;
    },
+   clicked(value) {
+      if (value == 0)
+         return 1;
+      else if (value == 1)
+         return 0;
    }
 };
