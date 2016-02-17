@@ -16,10 +16,10 @@ CPU.prototype.load = function() {
 };
 
 CPU.prototype.dataIntoTable = function() {
-   var nameNameIndex = this.dataHandler.getNameIndex();
-   each(nameNameIndex, function(nameNameIndexElement) {
-      var name = nameNameIndexElement.name,
-            type = nameNameIndexElement.type;
+   var nameIndex = this.dataHandler.getNameIndex();
+   each(nameIndex, function(nameIndexElement) {
+      var name = nameIndexElement.name,
+            type = nameIndexElement.type;
       var eleArr = this.dataHandler.dataToEle(name, type);
       this.tableHandler.createRow(name, type, eleArr);
    }, this);
