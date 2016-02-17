@@ -26,3 +26,17 @@ body {
    border-width: 1px;
    white-space: pre-wrap;
 }
+
+div {
+  height: 100%;
+}
+
+td {
+  width: 10px;
+  height: 1px;
+}
+
+div.clicked {
+  background-color: green;
+  height: 100%;
+}
