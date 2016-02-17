@@ -1,0 +1,13 @@
+data Obj
+Methods:
+   makeData(year, month, name)
+      returns {
+         name: [name], 
+         type: [type from dataType],
+         data: [data in Arr form with length equal to month length]}
+         
+   createInput(value)
+      return element
+
+   clicked(value)
+      return changed-value
