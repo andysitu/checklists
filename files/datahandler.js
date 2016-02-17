@@ -115,15 +115,22 @@ DataHandler.prototype.getDate = function() {
    };
 };
 
-DataHandler.prototype.dataToEle = function(name, type) {
+DataHandler.prototype.dataToEle = function(name, type, i, value) {
+   var dataWrapper = this.getDataWrapper(type);
+   var ele = dataWrapper.createInput(value);
+   ele.id = name + "_" + i;
+   return ele;
+}
+
+DataHandler.prototype.dataArrToEle = function(name, type) {
    var data = this.getData(name, type),
          dataWrapper = this.getDataWrapper(type);
    var eleArr = [], ele;
 
-   each(data, function(dataValue) {
-      ele = dataWrapper.createInput(dataValue);
+   each(data, function(dataValue, i) {
+      ele = this.dataToEle(name, type, i, dataValue);
       eleArr.push(ele);
-   });
+   }, this);
 
    return eleArr;
 };
