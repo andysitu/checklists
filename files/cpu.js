@@ -70,5 +70,7 @@ CPU.prototype.today = function() {
 };
 
 CPU.prototype.clicked = function(name, cellNum) {
-   console.log(name, cellNum);
+   var newElement = this.dataHandler.clicked(name, cellNum);
+   this.tableHandler.changeCell(name, cellNum, newElement);
+   console.log(newElement);
 };
