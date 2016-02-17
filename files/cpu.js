@@ -16,10 +16,10 @@ CPU.prototype.load = function() {
 };
 
 CPU.prototype.dataIntoTable = function() {
-   var index = this.dataHandler.getIndex();
-   each(index, function(indexElement) {
-      var name = indexElement.name,
-            type = indexElement.type;
+   var nameNameIndex = this.dataHandler.getNameIndex();
+   each(nameNameIndex, function(nameNameIndexElement) {
+      var name = nameNameIndexElement.name,
+            type = nameNameIndexElement.type;
       var eleArr = this.dataHandler.dataToEle(name, type);
       this.tableHandler.createRow(name, type, eleArr);
    }, this);
@@ -49,8 +49,8 @@ CPU.prototype.displayDate = function() {
 };
 
 CPU.prototype.loadData = function() {
-   var index = this.dataHandler.getIndex();
-   console.log(index);
+   var nameNameIndex = this.dataHandler.getNameIndex();
+   console.log(nameNameIndex);
 };
 
 CPU.prototype.showData = function() {

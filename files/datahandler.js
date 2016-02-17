@@ -1,22 +1,22 @@
-function DataHandler(id, year, month, defaultIndex) {
+function DataHandler(id, year, month, defaultNameIndex) {
    this.id = id;
    this.types = ["click", "date"];
    this.year = year;
    this.month = month;
    this.dataSet = {};
-   this.index = [];
-   this.loadIndex(defaultIndex);
+   this.nameNameIndex = [];
+   this.loadNameIndex(defaultNameIndex);
    this.loadData();
 }
 
 DataHandler.prototype.add = function(name, type) {
-   this.addIndex(name, type);
+   this.addNameIndex(name, type);
    var data = this.addData(name, type);
    return data;
 };
 DataHandler.prototype.save = function() {
    this.saveData();
-   this.saveIndex();
+   this.saveNameIndex();
 };
 
 // DATA VALUES SECTION
@@ -40,45 +40,46 @@ DataHandler.prototype.loadData = function() {
    }
 };
 DataHandler.prototype.getData = function(name, type) {
+   // If type is unspecificed, then the data MUST exists.
    if (this.dataSet[name] == undefined)
       this.addData(name, type);   
    return this.dataSet[name].data;
 };
 
 // INDEX SECTION
-DataHandler.prototype.saveIndex = function() {
-   storage.save("index_" + this.id, this.index);
+DataHandler.prototype.saveNameIndex = function() {
+   storage.save("nameNameIndex_" + this.id, this.nameNameIndex);
 };
-DataHandler.prototype.loadIndex = function(defaultIndex) {
-   if (this.index.length == 0) {
-      var savedIndex = storage.load("index_" + this.id);
-      if (savedIndex !== null) {
-         this.index = savedIndex;
-      } else if (defaultIndex !== undefined && Array.isArray(defaultIndex)) {
-         this.index = defaultIndex;
+DataHandler.prototype.loadNameIndex = function(defaultNameIndex) {
+   if (this.nameNameIndex.length == 0) {
+      var savedNameIndex = storage.load("nameNameIndex_" + this.id);
+      if (savedNameIndex !== null) {
+         this.nameNameIndex = savedNameIndex;
+      } else if (defaultNameIndex !== undefined && Array.isArray(defaultNameIndex)) {
+         this.nameNameIndex = defaultNameIndex;
       }
    }
 };
-DataHandler.prototype.addIndex = function(name, type) {
-   if (this.inIndex(name, type) == false) {
-      this.index.push( { name: name, type: type } );
+DataHandler.prototype.addNameIndex = function(name, type) {
+   if (this.inNameIndex(name, type) == false) {
+      this.nameNameIndex.push( { name: name, type: type } );
    }
 };
-DataHandler.prototype.getIndex = function() {
-   return this.index;
+DataHandler.prototype.getNameIndex = function() {
+   return this.nameNameIndex;
 };
-DataHandler.prototype.inIndex = function(name, type) {
+DataHandler.prototype.inNameIndex = function(name, type) {
    var status = false;
-   each(this.index, function(indexElement) {
-      if (indexElement.name == name)
+   each(this.nameNameIndex, function(nameNameIndexElement) {
+      if (nameNameIndexElement.name == name)
          status = true;
    });
    return status;
 };
-DataHandler.prototype.dataFromIndex = function() {
-   each(this.index, function(indexElement) {
-      var name = indexElement.name,
-            type = indexElement.type;
+DataHandler.prototype.dataFromNameIndex = function() {
+   each(this.nameNameIndex, function(nameNameIndexElement) {
+      var name = nameNameIndexElement.name,
+            type = nameNameIndexElement.type;
       var eleArr = this.addData(name, type);
    }, this);
 };
