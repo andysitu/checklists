@@ -45,7 +45,8 @@ DataHandler.prototype.loadData = function() {
 };
 DataHandler.prototype.getData = function(name, type) {
    // If type is unspecificed, then the data MUST exists.
-   if (this.dataSet[name] == undefined)
+   if (this.dataSet[name] == undefined || 
+      this.dataSet[name]["data"][this.year + "_" + this.month] == undefined)
       this.addData(name, type);   
    return this.dataSet[name]["data"][this.year + "_" + this.month];
 };
@@ -133,7 +134,6 @@ DataHandler.prototype.dataArrToEle = function(name, type) {
    var data = this.getData(name, type),
          dataWrapper = this.getDataWrapper(type);
    var eleArr = [], ele;
-
    each(data, function(dataValue, i) {
       ele = this.dataToEle(name, type, i, dataValue);
       eleArr.push(ele);
@@ -146,12 +146,11 @@ DataHandler.prototype.changeDate = function(year, month) {
    if (month === undefined) {
       month = this.month + year;
       year = this.year;
-   } else {
    }
    var dates = date.monthConverter(year, month);
    this.month = dates.month;
    this.year = dates.year;
-   this.loadData();
+   // this.loadData();
 };
 
 DataHandler.prototype.clicked = function(name, index) {
