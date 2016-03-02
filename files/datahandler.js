@@ -19,17 +19,21 @@ DataHandler.prototype.save = function() {
    this.saveNameIndex();
 };
 
+
 // DATA VALUES SECTION
 // DataHandler.prototype.getDataName = function() {
 //    return this.year + "_" + this.month + "_" + this.id;
 // };
 DataHandler.prototype.addData = function(name, type) {
+   if (type === undefined) type = "check";
    if (this.dataSet[name] === undefined) {
+      this.dataSet[name] = {type: type, data: {}};
+   }
+   if (this.dataSet[name]["data"][this.year + "_" + this.month] === undefined) {
       var dataObj = this.getDataWrapper(type);
       var data = dataObj.makeData(this.year, this.month, name);
-      this.dataSet[name] = data;
+      this.dataSet[name]["data"][this.year + "_" + this.month] = data;
    }
-   return this.dataSet[name].data;
 };
 DataHandler.prototype.saveData = function() {
    storage.save(this.id, this.dataSet);
@@ -46,10 +50,10 @@ DataHandler.prototype.getData = function(name, type) {
    // If type is unspecificed, then the data MUST exists.
    if (this.dataSet[name] == undefined)
       this.addData(name, type);   
-   return this.dataSet[name].data;
+   return this.dataSet[name]["data"][this.year + "_" + this.month];
 };
 DataHandler.prototype.changeData = function(name, index, value) {
-   this.dataSet[name]["data"][index] = value;
+   data: this.dataSet[name]["data"][this.year + "_" + this.month][index] = value;
 };
 
 // INDEX SECTION
