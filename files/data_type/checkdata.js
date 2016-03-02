@@ -5,11 +5,7 @@ var clickData = {
       for ( ; i <= len; i++) {
          arr.push(0);
       }
-      return {
-         name: name,
-         type: "click",
-         data: arr
-      };
+      return arr;
    },
    createInput(data) {
       var ele = document.createElement("div");

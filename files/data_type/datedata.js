@@ -6,11 +6,7 @@ var dateData = {
          dateArr.push(i);
       }
 
-      return {
-         name: "Date",
-         type: "date",
-         data: dateArr
-      };
+      return dateArr;
    },
    createInput(date) {
       return makeElement("div", {}, document.createTextNode(date)); 
