@@ -1,5 +1,0 @@
-12/23/2015
-added ui.js
-added cpu.js
-added add new row button function & functions to Chart
-moved current loader methods to cpu
