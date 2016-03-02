@@ -21,9 +21,6 @@ DataHandler.prototype.save = function() {
 
 
 // DATA VALUES SECTION
-// DataHandler.prototype.getDataName = function() {
-//    return this.year + "_" + this.month + "_" + this.id;
-// };
 DataHandler.prototype.addData = function(name, type) {
    if (type === undefined) type = "check";
    if (this.dataSet[name] === undefined) {
@@ -117,13 +114,6 @@ DataHandler.prototype.getTypes = function() {
    });
    return arr;
 };
-
-// DataHandler.prototype.convertToElement = function(name, i) {
-//    var dataContainer = this.getDataWrapper(type),
-//          data = this.dataSet[name]["data"][i],
-//          type = this.dataSet[name].type;
-//    return dataContainer.createInput(data);
-// };
 
 DataHandler.prototype.getDate = function() {
    return {
