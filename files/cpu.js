@@ -21,7 +21,7 @@ CPU.prototype.dataIntoTable = function() {
       var name = nameIndexElement.name,
             type = nameIndexElement.type;
       var eleArr = this.dataHandler.dataArrToEle(name, type);
-      this.tableHandler.createRow(name, type, eleArr);
+      this.tableHandler.createRow(name, eleArr);
    }, this);
 };
 
@@ -40,7 +40,7 @@ CPU.prototype.getTypes = function() {
 CPU.prototype.addRow = function(name, type) {
    this.dataHandler.add(name, type);
    var eleArr = this.dataHandler.dataArrToEle(name, type);
-   this.tableHandler.createRow(name, type, eleArr);
+   this.tableHandler.createRow(name, eleArr);
 };
 
 CPU.prototype.displayDate = function() {
@@ -49,8 +49,8 @@ CPU.prototype.displayDate = function() {
 };
 
 CPU.prototype.loadData = function() {
-   var nameNameIndex = this.dataHandler.getNameIndex();
-   console.log(nameNameIndex);
+   var nameIndex = this.dataHandler.getNameIndex();
+   console.log(nameIndex);
 };
 
 CPU.prototype.showData = function() {
