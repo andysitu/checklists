@@ -3,24 +3,24 @@ function TableHandler(cpuRef, id) {
   this.id = id;
   this.tableId = id + "Table";
   this.tableDivId = id + "Div";
-  this.table = undefined;
+  this.table_element = undefined;
   this.rowsIndex = undefined;
 }
 
 TableHandler.prototype.load = function() {
   // If there is a previous table, this will remove it.
-  if (this.table !== undefined) {
+  if (this.table_element !== undefined) {
     this.deleteTable();
   }
-  this.table = this.createTable();
+  this.table_element = this.createTable();
   this.rowsIndex = [];
   this.appendTable();
 };
 
 TableHandler.prototype.deleteTable = function() {
-  this.table.removeEventListener("click", this.clicked);
+  this.table_element.removeEventListener("click", this.clicked);
   var containerDiv = document.getElementById(this.id + "TableDiv");
-  containerDiv.removeChild(this.table);
+  containerDiv.removeChild(this.table_element);
 };
 TableHandler.prototype.createTable = function() {
   var table = makeElement("table", {id: this.tableId});
@@ -42,10 +42,10 @@ TableHandler.prototype.clicked =function(e) {
 
 TableHandler.prototype.appendTable = function() {
   var containerDiv = document.getElementById(this.id + "TableDiv");
-  containerDiv.appendChild(this.table);
+  containerDiv.appendChild(this.table_element);
 };
 
-TableHandler.prototype.createRow = function(name, type, eleArr) {
+TableHandler.prototype.createRow = function(name, eleArr) {
   if (this.rowsIndex.indexOf(name) == -1) {
     var tr = document.createElement("tr"),
       td = document.createElement("td"),
@@ -58,7 +58,7 @@ TableHandler.prototype.createRow = function(name, type, eleArr) {
       tr.appendChild(td).appendChild(element);  
     });
 
-    this.table.appendChild(tr);
+    this.table_element.appendChild(tr);
 
     this.rowsIndex.push(name)
   }
