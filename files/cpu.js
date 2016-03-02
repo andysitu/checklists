@@ -48,11 +48,6 @@ CPU.prototype.displayDate = function() {
    display.date(date.year, date.month);
 };
 
-CPU.prototype.loadData = function() {
-   var nameIndex = this.dataHandler.getNameIndex();
-   console.log(nameIndex);
-};
-
 CPU.prototype.showData = function() {
    console.log(this.dataHandler.dataSet);
 };

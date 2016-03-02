@@ -59,7 +59,8 @@ DataHandler.prototype.getDataObj = function(name) {
       type: this.dataSet[name]["type"],
       data: this.dataSet[name]["data"][this.year + "_" + this.month]
    };
-}
+};
+
 
 // INDEX SECTION
 DataHandler.prototype.getNIName = function() {
@@ -162,7 +163,6 @@ DataHandler.prototype.clicked = function(name, index) {
       type = dataObj.type,
       value = dataObj.data[index];
    
-
       var dataW = this.getDataWrapper(type),
          newValue = dataW.clicked(value);
 
