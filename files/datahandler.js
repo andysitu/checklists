@@ -4,7 +4,7 @@ function DataHandler(id, year, month, defaultNameIndex) {
    this.year = year;
    this.month = month;
    this.dataSet = {};
-   this.nameNameIndex = [];
+   this.nameIndex = [];
    this.loadNameIndex(defaultNameIndex);
    this.loadData();
 }
@@ -20,6 +20,9 @@ DataHandler.prototype.save = function() {
 };
 
 // DATA VALUES SECTION
+// DataHandler.prototype.getDataName = function() {
+//    return this.year + "_" + this.month + "_" + this.id;
+// };
 DataHandler.prototype.addData = function(name, type) {
    if (this.dataSet[name] === undefined) {
       var dataObj = this.getDataWrapper(type);
@@ -29,10 +32,10 @@ DataHandler.prototype.addData = function(name, type) {
    return this.dataSet[name].data;
 };
 DataHandler.prototype.saveData = function() {
-   storage.save(this.year + "_" + this.month + "_" + this.id, this.dataSet);
+   storage.save(this.id, this.dataSet);
 };
 DataHandler.prototype.loadData = function() {
-   var data = storage.load(this.year + "_" + this.month + "_" + this.id);
+   var data = storage.load(this.id);
    if (data !== null)
       this.dataSet = data;
    else {
@@ -47,42 +50,45 @@ DataHandler.prototype.getData = function(name, type) {
 };
 DataHandler.prototype.changeData = function(name, index, value) {
    this.dataSet[name]["data"][index] = value;
-}
+};
 
 // INDEX SECTION
+DataHandler.prototype.getNIName = function() {
+   return "nameIndex_" + this.id;
+}
 DataHandler.prototype.saveNameIndex = function() {
-   storage.save("nameNameIndex_" + this.id, this.nameNameIndex);
+   storage.save( this.getNIName(), this.nameIndex); 
 };
 DataHandler.prototype.loadNameIndex = function(defaultNameIndex) {
-   if (this.nameNameIndex.length == 0) {
-      var savedNameIndex = storage.load("nameNameIndex_" + this.id);
+   if (this.nameIndex.length == 0) {
+      var savedNameIndex = storage.load( this.getNIName() );
       if (savedNameIndex !== null) {
-         this.nameNameIndex = savedNameIndex;
+         this.nameIndex = savedNameIndex;
       } else if (defaultNameIndex !== undefined && Array.isArray(defaultNameIndex)) {
-         this.nameNameIndex = defaultNameIndex;
+         this.nameIndex = defaultNameIndex;
       }
    }
 };
 DataHandler.prototype.addNameIndex = function(name, type) {
    if (this.inNameIndex(name, type) == false) {
-      this.nameNameIndex.push( { name: name, type: type } );
+      this.nameIndex.push( { name: name, type: type } );
    }
 };
 DataHandler.prototype.getNameIndex = function() {
-   return this.nameNameIndex;
+   return this.nameIndex;
 };
 DataHandler.prototype.inNameIndex = function(name, type) {
    var status = false;
-   each(this.nameNameIndex, function(nameNameIndexElement) {
-      if (nameNameIndexElement.name == name)
+   each(this.nameIndex, function(nameIndexElement) {
+      if (nameIndexElement.name == name)
          status = true;
    });
    return status;
 };
 DataHandler.prototype.dataFromNameIndex = function() {
-   each(this.nameNameIndex, function(nameNameIndexElement) {
-      var name = nameNameIndexElement.name,
-            type = nameNameIndexElement.type;
+   each(this.nameIndex, function(nameIndexElement) {
+      var name = nameIndexElement.name,
+            type = nameIndexElement.type;
       var eleArr = this.addData(name, type);
    }, this);
 };
@@ -101,12 +107,12 @@ DataHandler.prototype.getTypes = function() {
    return arr;
 };
 
-DataHandler.prototype.convertToElement = function(name, i) {
-   var dataContainer = this.getDataWrapper(type),
-         data = this.dataSet[name]["data"][i],
-         type = this.dataSet[name].type;
-   return dataContainer.createInput(data);
-};
+// DataHandler.prototype.convertToElement = function(name, i) {
+//    var dataContainer = this.getDataWrapper(type),
+//          data = this.dataSet[name]["data"][i],
+//          type = this.dataSet[name].type;
+//    return dataContainer.createInput(data);
+// };
 
 DataHandler.prototype.getDate = function() {
    return {
