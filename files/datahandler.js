@@ -55,6 +55,13 @@ DataHandler.prototype.getData = function(name, type) {
 DataHandler.prototype.changeData = function(name, index, value) {
    data: this.dataSet[name]["data"][this.year + "_" + this.month][index] = value;
 };
+DataHandler.prototype.getDataObj = function(name) {
+   return {
+      name: name,
+      type: this.dataSet[name]["type"],
+      data: this.dataSet[name]["data"][this.year + "_" + this.month]
+   };
+}
 
 // INDEX SECTION
 DataHandler.prototype.getNIName = function() {
@@ -161,7 +168,7 @@ DataHandler.prototype.clicked = function(name, index) {
    // CPU runs this, specifying table location clicked.
    // Changes subsequent data values in data & then returns
    // the html element.
-   var dataObj = this.dataSet[name];
+   var dataObj = this.getDataObj(name);
    if (dataObj) {
       type = dataObj.type,
       value = dataObj.data[index];
