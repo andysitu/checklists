@@ -5,11 +5,13 @@ function DataHandler(id, year, month, defaultNameIndex) {
    this.month = month;
    this.dataSet = {};
    this.nameIndex = [];
+   this._index = [];
    this.loadNameIndex(defaultNameIndex);
    this.loadData();
 }
 
 DataHandler.prototype.add = function(name, type) {
+   this._addIndex(name);
    this.addNameIndex(name, type);
    var data = this.addData(name, type);
    return data;
@@ -71,6 +73,13 @@ DataHandler.prototype.getDataObj = function(name) {
 
 
 // INDEX SECTION
+DataHandler.prototype._addIndex = function(name) {
+   this._index.push(name);
+};
+DataHandler.prototype._getIndex = function() {
+   return this._index;
+};
+
 DataHandler.prototype.getNIName = function() {
    return "nameIndex_" + this.id;
 }
