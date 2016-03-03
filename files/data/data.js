@@ -5,7 +5,7 @@ function Data(name, type) {
    this._data = {};
 }
 
-Data.prototype.make = function(year, month) {
+Data.prototype.addMonth = function(year, month) {
    if (this["_data"][year + "_" + month] === undefined) {
       var dataObj = this._dataWrapper;
       var data = dataObj.makeData(year, month, name);
