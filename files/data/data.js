@@ -56,4 +56,11 @@ Data.prototype.getElements = function(year, month) {
 
    return elementArray;
 };
+
+Data.prototype.clicked = function(year, month, i) {
+   var value = this._getData(year, month, i);
+   var newValue = this._dataWrapper.clicked(value);
+
+   this._changeData(year, month, i, newValue);
+   return this._getElement(year, month, i);
 };
