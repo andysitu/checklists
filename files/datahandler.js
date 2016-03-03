@@ -51,7 +51,7 @@ DataHandler.prototype.getData = function(name, type) {
    return this.dataSet[name]["data"][this.year + "_" + this.month];
 };
 DataHandler.prototype.changeData = function(name, index, value) {
-   data: this.dataSet[name]["data"][this.year + "_" + this.month][index] = value;
+   this.dataSet[name]["data"][this.year + "_" + this.month][index] = value;
 };
 DataHandler.prototype.getDataObj = function(name) {
    return {
@@ -160,7 +160,7 @@ DataHandler.prototype.clicked = function(name, index) {
    // the html element.
    var dataObj = this.getDataObj(name);
    if (dataObj) {
-      type = dataObj.type,
+      var type = dataObj.type,
       value = dataObj.data[index];
    
       var dataW = this.getDataWrapper(type),
