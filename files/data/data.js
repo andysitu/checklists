@@ -13,10 +13,17 @@ Data.prototype.make = function(year, month) {
    }
 };
 
-Data.prototype._getData = function(year, month) {
+Data.prototype._getDataArray = function(year, month) {
    if (this["_data"][year + "_" + month] === undefined)
       this.addData(year, month);
    return this["_data"][year + "_" + month];
+};
+
+Data.prototype._getData = function(year, month, i) {
+   if (this["_data"][year + "_" + month] === undefined)
+      this.addData(year, month);
+   return this["_data"][year + "_" + month][i];
+}
 }
 
 Data.prototype._getDataWrapper = function(type) {
