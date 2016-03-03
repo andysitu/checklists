@@ -30,17 +30,17 @@ DataHandler.prototype._makeData = function(name, type) {
    data.addMonth(this.year, this.month);
 };
 
-DataHandler.prototype.addData = function(name, type) {
-   if (type === undefined) type = "check";
-   if (this.dataSet[name] === undefined) {
-      this.dataSet[name] = {type: type, data: {}};
-   }
-   if (this.dataSet[name]["data"][this.year + "_" + this.month] === undefined) {
-      var dataObj = this.getDataWrapper(type);
-      var data = dataObj.makeData(this.year, this.month, name);
-      this.dataSet[name]["data"][this.year + "_" + this.month] = data;
-   }
-};
+// DataHandler.prototype.addData = function(name, type) {
+//    if (type === undefined) type = "check";
+//    if (this.dataSet[name] === undefined) {
+//       this.dataSet[name] = {type: type, data: {}};
+//    }
+//    if (this.dataSet[name]["data"][this.year + "_" + this.month] === undefined) {
+//       var dataObj = this.getDataWrapper(type);
+//       var data = dataObj.makeData(this.year, this.month, name);
+//       this.dataSet[name]["data"][this.year + "_" + this.month] = data;
+//    }
+// };
 DataHandler.prototype.saveData = function() {
    storage.save(this.id, this.dataSet);
 };
@@ -54,8 +54,7 @@ DataHandler.prototype.loadData = function() {
 };
 DataHandler.prototype.getData = function(name, type) {
    // If type is unspecificed, then the data MUST exists.
-   if (this.dataSet[name] == undefined || 
-      this.dataSet[name]["data"][this.year + "_" + this.month] == undefined)
+   if (this.dataSet[name] == undefined)
       this.addData(name, type);   
    return this.dataSet[name]["data"][this.year + "_" + this.month];
 };
