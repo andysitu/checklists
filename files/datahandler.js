@@ -139,23 +139,12 @@ DataHandler.prototype.getDate = function() {
    };
 };
 
-DataHandler.prototype.dataToEle = function(name, type, i, value) {
-   var dataWrapper = this.getDataWrapper(type);
-   var ele = dataWrapper.createInput(value);
-   ele.id = name + "_" + i;
-   return ele;
+DataHandler.prototype.getElement = function(name, type, i) {
+   return this.dataSet[name].getElement(this.year, this.month, i);
 }
 
-DataHandler.prototype.dataArrToEle = function(name, type) {
-   var data = this.getData(name, type),
-         dataWrapper = this.getDataWrapper(type);
-   var eleArr = [], ele;
-   each(data, function(dataValue, i) {
-      ele = this.dataToEle(name, type, i, dataValue);
-      eleArr.push(ele);
-   }, this);
-
-   return eleArr;
+DataHandler.prototype.getElements = function(name, type) {
+   return this.dataSet[name].getElements(this.year, this.month);
 };
 
 DataHandler.prototype.changeDate = function(year, month) {
