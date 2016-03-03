@@ -16,13 +16,8 @@ CPU.prototype.load = function() {
 };
 
 CPU.prototype.dataIntoTable = function() {
-   var nameIndex = this.dataHandler.getNameIndex();
-   each(nameIndex, function(nameIndexElement) {
-      var name = nameIndexElement.name,
-            type = nameIndexElement.type;
-      var eleArr = this.dataHandler.dataArrToEle(name, type);
-      this.tableHandler.createRow(name, eleArr);
-   }, this);
+   var elementsArrays = this.dataHandler.getAllElementsWithName(name);
+   this.tableHandler.createRows(elementsArrays);
 };
 
 CPU.prototype.createAddRowMenu = function(name, type) {
