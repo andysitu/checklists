@@ -147,6 +147,8 @@ DataHandler.prototype.getElements = function(name) {
    return this.dataSet[name].getElements(this.year, this.month);
 };
 DataHandler.prototype.getElementsWithName = function(name) {
+// Appends text node elements of the name to the front of the element array.
+// Used by table handler as it adds everything into a table row.
    var elementsArray = this.dataSet[name].getElements(this.year, this.month);
    elementsArray.unshift(ele = document.createTextNode(name));
    return elementArrays;
