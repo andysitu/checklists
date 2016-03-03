@@ -21,6 +21,14 @@ DataHandler.prototype.save = function() {
 
 
 // DATA VALUES SECTION
+DataHandler.prototype.makeData = function(name, type) {
+   if (this.dataSet[name] === undefined) {
+      var data = new Data(name, type);
+      this.dataSet[name] = data;
+   }
+   data.addMonth(this.year, this.month);
+};
+
 DataHandler.prototype.addData = function(name, type) {
    if (type === undefined) type = "check";
    if (this.dataSet[name] === undefined) {
