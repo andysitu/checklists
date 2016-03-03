@@ -45,15 +45,12 @@ TableHandler.prototype.appendTable = function() {
   containerDiv.appendChild(this.table_element);
 };
 
-TableHandler.prototype.createRow = function(name, eleArr) {
+TableHandler.prototype.createRow = function(elementArray) {
   if (this.rowsIndex.indexOf(name) == -1) {
     var tr = document.createElement("tr"),
-      td = document.createElement("td"),
-      ele = document.createTextNode(name);
+      td;
 
-    tr.appendChild(td).appendChild(ele);
-
-    each(eleArr, function(element, i) {
+    each(elementArray, function(element, i) {
       td = makeElement("td", {id: name + "_Cell_" + i});
       tr.appendChild(td).appendChild(element);  
     });
@@ -62,6 +59,12 @@ TableHandler.prototype.createRow = function(name, eleArr) {
 
     this.rowsIndex.push(name)
   }
+};
+
+TableHandler.prototype.createRows = function(elementArrays) {
+  each(elementArrays, function(elementArray) {
+    this.createRow(elementArray);
+  }, this)
 };
 
 TableHandler.prototype.changeCell = function(name, cellNum, newElement) {
