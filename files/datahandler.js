@@ -13,8 +13,7 @@ function DataHandler(id, year, month, defaultNameIndex) {
 DataHandler.prototype.add = function(name, type) {
    this._addIndex(name);
    this.addNameIndex(name, type);
-   var data = this.addData(name, type);
-   return data;
+   this._makeData(name, type);
 };
 DataHandler.prototype.save = function() {
    this.saveData();
@@ -23,7 +22,7 @@ DataHandler.prototype.save = function() {
 
 
 // DATA VALUES SECTION
-DataHandler.prototype.makeData = function(name, type) {
+DataHandler.prototype._makeData = function(name, type) {
    if (this.dataSet[name] === undefined) {
       var data = new Data(name, type);
       this.dataSet[name] = data;
