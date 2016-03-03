@@ -139,12 +139,26 @@ DataHandler.prototype.getDate = function() {
    };
 };
 
-DataHandler.prototype.getElement = function(name, type, i) {
+DataHandler.prototype.getElement = function(name, i) {
    return this.dataSet[name].getElement(this.year, this.month, i);
-}
+};
 
-DataHandler.prototype.getElements = function(name, type) {
+DataHandler.prototype.getElements = function(name) {
    return this.dataSet[name].getElements(this.year, this.month);
+};
+DataHandler.prototype.getElementsWithName = function(name) {
+   var elementsArray = this.dataSet[name].getElements(this.year, this.month);
+   elementsArray.unshift(ele = document.createTextNode(name));
+   return elementArrays;
+};
+
+DataHandler.prototype.getAllElementsWithName = function() {
+   var elementArrays = [];
+   var index = this._getIndex();
+   each(index, function(name) {
+      elementArrays.push(this.getElementsWithName(name));
+   }, this);
+   return elementArrays;
 };
 
 DataHandler.prototype.changeDate = function(year, month) {
