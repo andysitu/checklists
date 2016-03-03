@@ -36,11 +36,11 @@ Data.prototype._getDataWrapper = function(type) {
    }
 };
 
-Data.prototype._getElement = function(year, month, i) {
+Data.prototype.getElement = function(year, month, i) {
    var value = this._getData(year, month, i);
    var dataWrapper = this._dataWrapper;
    var ele = dataWrapper.createInput(value);
-   ele.id = name + "_" + i;
+   ele.id = this.name + "_" + i;
    return ele;
 };
 
@@ -50,7 +50,7 @@ Data.prototype.getElements = function(year, month) {
       element = undefined;
 
    each(dataArray, function(dataValue, i) {
-      element = this._getElement(year, month, i);
+      element = this.getElement(year, month, i);
       elementArray.push(element);
    }, this);
 
@@ -62,5 +62,5 @@ Data.prototype.clicked = function(year, month, i) {
    var newValue = this._dataWrapper.clicked(value);
 
    this._changeData(year, month, i, newValue);
-   return this._getElement(year, month, i);
+   return this.getElement(year, month, i);
 };
