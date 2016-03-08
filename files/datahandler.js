@@ -3,7 +3,7 @@ function DataHandler(id, year, month, defaultNameIndex) {
    this.types = ["click", "date"];
    this.year = year;
    this.month = month;
-   this.dataSet = {};
+   this._dataSet = {};
    this.nameIndex = [];
    this._index = [];
    this.loadNameIndex(defaultNameIndex);
@@ -20,25 +20,24 @@ DataHandler.prototype.save = function() {
    this.saveNameIndex();
 };
 
-
 // DATA VALUES SECTION
 DataHandler.prototype._makeData = function(name, type) {
-   if (this.dataSet[name] === undefined) {
+   if (this._dataSet[name] === undefined) {
       var data = new Data(name, type);
-      this.dataSet[name] = data;
+      this._dataSet[name] = data;
    }
    data.addMonth(this.year, this.month);
 };
 
 // DataHandler.prototype.addData = function(name, type) {
 //    if (type === undefined) type = "check";
-//    if (this.dataSet[name] === undefined) {
-//       this.dataSet[name] = {type: type, data: {}};
+//    if (this._dataSet[name] === undefined) {
+//       this._dataSet[name] = {type: type, data: {}};
 //    }
-//    if (this.dataSet[name]["data"][this.year + "_" + this.month] === undefined) {
+//    if (this._dataSet[name]["data"][this.year + "_" + this.month] === undefined) {
 //       var dataObj = this.getDataWrapper(type);
 //       var data = dataObj.makeData(this.year, this.month, name);
-//       this.dataSet[name]["data"][this.year + "_" + this.month] = data;
+//       this._dataSet[name]["data"][this.year + "_" + this.month] = data;
 //    }
 // };
 DataHandler.prototype.saveData = function() {
@@ -47,25 +46,26 @@ DataHandler.prototype.saveData = function() {
 DataHandler.prototype.loadData = function() {
    var data = storage.load(this.id);
    if (data !== null)
-      this.dataSet = data;
+      this._dataSet = data;
    else {
       this.dataSet = {};
+      this._dataSet = {};
    }
 };
 DataHandler.prototype.getData = function(name, type) {
    // If type is unspecificed, then the data MUST exists.
-   if (this.dataSet[name] == undefined)
+   if (this._dataSet[name] == undefined)
       this.addData(name, type);   
-   return this.dataSet[name]["data"][this.year + "_" + this.month];
+   return this._dataSet[name]["data"][this.year + "_" + this.month];
 };
 DataHandler.prototype.changeData = function(name, index, value) {
-   this.dataSet[name]["data"][this.year + "_" + this.month][index] = value;
+   this._dataSet[name]["data"][this.year + "_" + this.month][index] = value;
 };
 DataHandler.prototype.getDataObj = function(name) {
    return {
       name: name,
-      type: this.dataSet[name]["type"],
-      data: this.dataSet[name]["data"][this.year + "_" + this.month]
+      type: this._dataSet[name]["type"],
+      data: this._dataSet[name]["data"][this.year + "_" + this.month]
    };
 };
 
@@ -140,16 +140,16 @@ DataHandler.prototype.getDate = function() {
 };
 
 DataHandler.prototype.getElement = function(name, i) {
-   return this.dataSet[name].getElement(this.year, this.month, i);
+   return this._dataSet[name].getElement(this.year, this.month, i);
 };
 
 DataHandler.prototype.getElements = function(name) {
-   return this.dataSet[name].getElements(this.year, this.month);
+   return this._dataSet[name].getElements(this.year, this.month);
 };
 DataHandler.prototype.getElementsWithName = function(name) {
 // Appends text node elements of the name to the front of the element array.
 // Used by table handler as it adds everything into a table row.
-   var elementsArray = this.dataSet[name].getElements(this.year, this.month);
+   var elementsArray = this._dataSet[name].getElements(this.year, this.month);
    elementsArray.unshift(ele = document.createTextNode(name));
    return elementArrays;
 };
