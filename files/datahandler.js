@@ -72,7 +72,11 @@ DataHandler.prototype.getDataObj = function(name) {
 
 // INDEX SECTION
 DataHandler.prototype._addIndex = function(name) {
-   this._index.push(name);
+   if ( !(this._index.indexOf(name)) ) {
+      this._index.push(name);
+      return true;
+   } else
+      return false;
 };
 DataHandler.prototype._getIndex = function() {
    return this._index;
