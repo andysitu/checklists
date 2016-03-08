@@ -27,6 +27,13 @@ DataHandler.prototype._makeData = function(name, type) {
       this._dataSet[name] = data;
    }
    data.addMonth(this.year, this.month);
+DataHandler.prototype.checkMonth(name) {
+   this._dataSet[name].addMonth(this.year, this.month);
+};
+DataHandler.prototype._checkAllMonth = function() {
+   each(this._dataSet, function(data) {
+      data.addMonth(this.year, this.month);
+   }, this);
 };
 
 // DataHandler.prototype.addData = function(name, type) {
