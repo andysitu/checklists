@@ -16,6 +16,7 @@ DataHandler.prototype.add = function(name, type) {
       this._makeData(name, type);
    }
 };
+
 DataHandler.prototype.save = function() {
    this.saveData();
    this.saveNameIndex();
@@ -51,14 +52,13 @@ DataHandler.prototype._checkAllMonth = function() {
 //    }
 // };
 DataHandler.prototype.saveData = function() {
-   storage.save(this.id, this.dataSet);
+   storage.save(this.id, this._dataSet);
 };
 DataHandler.prototype.loadData = function() {
    var data = storage.load(this.id);
    if (data !== null)
       this._dataSet = data;
    else {
-      this.dataSet = {};
       this._dataSet = {};
    }
 };
