@@ -102,13 +102,8 @@ DataHandler.prototype.addNameIndex = function(name, type) {
 DataHandler.prototype.getNameIndex = function() {
    return this.nameIndex;
 };
-DataHandler.prototype.inNameIndex = function(name, type) {
-   var status = false;
-   each(this.nameIndex, function(nameIndexElement) {
-      if (nameIndexElement.name == name)
-         status = true;
-   });
-   return status;
+DataHandler.prototype._inIndex = function(name, type) {
+   return this._index.indexOf(name);
 };
 DataHandler.prototype.dataFromNameIndex = function() {
    each(this.nameIndex, function(nameIndexElement) {
