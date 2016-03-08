@@ -26,7 +26,9 @@ DataHandler.prototype._makeData = function(name, type) {
       var data = new Data(name, type);
       this._dataSet[name] = data;
    }
-   data.addMonth(this.year, this.month);
+   this.checkMonth(name);
+};
+
 DataHandler.prototype.checkMonth(name) {
    this._dataSet[name].addMonth(this.year, this.month);
 };
