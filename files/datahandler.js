@@ -11,9 +11,10 @@ function DataHandler(id, year, month, defaultNameIndex) {
 }
 
 DataHandler.prototype.add = function(name, type) {
-   this._addIndex(name);
-   this.addNameIndex(name, type);
-   this._makeData(name, type);
+   if ( !(this._inIndex(name)) ) {
+      this._addIndex(name, type);
+      this._makeData(name, type);
+   }
 };
 DataHandler.prototype.save = function() {
    this.saveData();
