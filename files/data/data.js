@@ -40,7 +40,7 @@ Data.prototype.getElement = function(year, month, i) {
    var value = this._getData(year, month, i);
    var dataWrapper = this._dataWrapper;
    var ele = dataWrapper.createInput(value);
-   ele.id = this.name + "_" + i;
+   ele.id = this._name + "_" + i;
    return ele;
 };
 
