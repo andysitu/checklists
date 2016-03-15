@@ -45,7 +45,7 @@ TableHandler.prototype.appendTable = function() {
   containerDiv.appendChild(this.table_element);
 };
 
-TableHandler.prototype.createRow = function(elementArray) {
+TableHandler.prototype.createRow = function(name, elementArray) {
   if (this.rowsIndex.indexOf(name) == -1) {
     var tr = document.createElement("tr"),
       td;
