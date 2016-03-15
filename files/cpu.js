@@ -34,8 +34,8 @@ CPU.prototype.getTypes = function() {
 
 CPU.prototype.addRow = function(name, type) {
    this.dataHandler.add(name, type);
-   var eleArr = this.dataHandler.dataArrToEle(name, type);
-   this.tableHandler.createRow(name, eleArr);
+   var elements = this.dataHandler.getElement(name);
+   this.tableHandler.createRow(name, elements);
 };
 
 CPU.prototype.displayDate = function() {
