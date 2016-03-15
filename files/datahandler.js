@@ -31,14 +31,14 @@ DataHandler.prototype._makeData = function(name, type) {
    this.checkMonth(name);
 };
 
-DataHandler.prototype.checkMonth = function(name) {
-   this._dataSet[name].addMonth(this._year, this._month);
-};
-DataHandler.prototype._checkAllMonth = function() {
-   each(this._dataSet, function(data) {
-      data.addMonth(this._year, this._month);
-   }, this);
-};
+// DataHandler.prototype.checkMonth = function(name) {
+//    this._dataSet[name].addMonth(this._year, this._month);
+// };
+// DataHandler.prototype._checkAllMonth = function() {
+//    each(this._dataSet, function(data) {
+//       data.addMonth(this._year, this._month);
+//    }, this);
+// };
 
 // DataHandler.prototype.addData = function(name, type) {
 //    if (type === undefined) type = "check";
