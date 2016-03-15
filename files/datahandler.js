@@ -4,9 +4,9 @@ function DataHandler(id, year, month, defaultNameIndex) {
    this._year = year;
    this._month = month;
    this._dataSet = {};
-   this.nameIndex = [];
+   // this.nameIndex = [];
    this._index = [];
-   this.loadNameIndex(defaultNameIndex);
+   // this.loadNameIndex(defaultNameIndex);
    this.loadData();
 }
 
