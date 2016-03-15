@@ -11,7 +11,7 @@ function DataHandler(id, year, month, defaultNameIndex) {
 }
 
 DataHandler.prototype.add = function(name, type) {
-   if ( !(this._inIndex(name)) ) {
+   if (this._inIndex(name) == -1) {
       this._addIndex(name, type);
       this._makeData(name, type);
    }
