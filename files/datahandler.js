@@ -149,12 +149,13 @@ DataHandler.prototype.getDate = function() {
 };
 
 DataHandler.prototype.getElement = function(name, i) {
-   return this._dataSet[name].getElement(this.year, this.month, i);
+   if (i === undefined) {
+      return this._dataSet[name].getElements(this.year, this.month);
+   } else {
+      return this._dataSet[name].getElement(this.year, this.month, i);
+   }
 };
 
-DataHandler.prototype.getElements = function(name) {
-   return this._dataSet[name].getElements(this.year, this.month);
-};
 DataHandler.prototype.getElementsWithName = function(name) {
 // Appends text node elements of the name to the front of the element array.
 // Used by table handler as it adds everything into a table row.
