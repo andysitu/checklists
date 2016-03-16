@@ -13,7 +13,8 @@ function DataHandler(id, year, month, defaultNameIndex) {
 DataHandler.prototype.add = function(name, type) {
    if (this._inIndex(name) == -1) {
       this._addIndex(name, type);
-      this._makeData(name, type);
+      var dataObj = this._makeData(name, type);
+      this._addData(dataObj);
    }
 };
 
@@ -25,10 +26,17 @@ DataHandler.prototype.save = function() {
 // DATA VALUES SECTION
 DataHandler.prototype._makeData = function(name, type) {
    if (this._dataSet[name] === undefined) {
-      var data = new Data(name, type);
-      this._dataSet[name] = data;
+      return new Data(name, type);
+   } else {
+      return undefined;
    }
-   this.checkMonth(name);
+};
+
+DataHandler.prototype._addData = function(dataObj) {
+   if (dataObj !== undefined) {
+      var name = dataObj.getName();
+      this._dataSet[name] = dataObj;
+   }
 };
 
 // DataHandler.prototype.checkMonth = function(name) {
@@ -78,7 +86,6 @@ DataHandler.prototype.getDataObj = function(name) {
       data: this._dataSet[name]["data"][this._year + "_" + this._month]
    };
 };
-
 
 // INDEX SECTION
 DataHandler.prototype._addIndex = function(name) {
