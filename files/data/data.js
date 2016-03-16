@@ -5,6 +5,10 @@ function Data(name, type) {
    this._data = {};
 }
 
+Data.prototype.getName = function() {
+   return this._name;
+}
+
 Data.prototype.addMonth = function(year, month) {
    if (this["_data"][year + "_" + month] === undefined) {
       var dataObj = this._dataWrapper;
