@@ -15,13 +15,13 @@ Data.prototype.addMonth = function(year, month) {
 
 Data.prototype._getDataArray = function(year, month) {
    if (this["_data"][year + "_" + month] === undefined)
-      this.addData(year, month);
+      this.addMonth(year, month);
    return this["_data"][year + "_" + month];
 };
 
 Data.prototype._getData = function(year, month, i) {
    if (this["_data"][year + "_" + month] === undefined)
-      this.addData(year, month);
+      this.addMonth(year, month);
    return this["_data"][year + "_" + month][i];
 }
 
