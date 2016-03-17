@@ -1,4 +1,4 @@
-function DataHandler(id, year, month, defaultNameIndex) {
+function DataHandler(id, year, month, defaultIndex) {
    this.id = id;
    this.types = ["click", "date"];
    this._year = year;
@@ -7,7 +7,6 @@ function DataHandler(id, year, month, defaultNameIndex) {
    this._indexName = id + "_index";
    this._defaultIndex = defaultIndex;
    this._index = [];
-   // this.loadNameIndex(defaultNameIndex);
    this.loadData();
 }
 
@@ -32,9 +31,8 @@ DataHandler.prototype._makeData = function(name, type) {
       return undefined;
    }
 };
-
 DataHandler.prototype._addData = function(dataObj) {
-   if (dataObj !== undefined) {
+  if (dataObj !== undefined) {
       var name = dataObj.getName();
       this._dataSet[name] = dataObj;
    }

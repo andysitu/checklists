@@ -52,6 +52,5 @@ var menu = {
    submit(menuType) {
       this.currentMenuType.submitting();
       this.close();
-      
    }
 };
