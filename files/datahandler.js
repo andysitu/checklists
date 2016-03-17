@@ -98,31 +98,20 @@ DataHandler.prototype._addIndex = function(name) {
 DataHandler.prototype._getIndex = function() {
    return this._index;
 };
+DataHandler.prototype._saveIndex = function() {
+   storage.save( this.indexName(), this.index); 
+};
+DataHandler.prototype._loadIndex = function() {
+   var loadedIndex = storage.load(this.indexName);
+   if (loadedIndex !== null) {
+      this.index = loadedIndex;
+   } else if (this._defaultIndex !== undefined) {
+      this.index = this._defaultIndex;
+   } else {
+      this.index = [];
+   }
+};
 
-DataHandler.prototype.getNIName = function() {
-   return "nameIndex_" + this.id;
-}
-DataHandler.prototype.saveNameIndex = function() {
-   storage.save( this.getNIName(), this.nameIndex); 
-};
-DataHandler.prototype.loadNameIndex = function(defaultNameIndex) {
-   if (this.nameIndex.length == 0) {
-      var savedNameIndex = storage.load( this.getNIName() );
-      if (savedNameIndex !== null) {
-         this.nameIndex = savedNameIndex;
-      } else if (defaultNameIndex !== undefined && Array.isArray(defaultNameIndex)) {
-         this.nameIndex = defaultNameIndex;
-      }
-   }
-};
-DataHandler.prototype.addNameIndex = function(name, type) {
-   if (this.inNameIndex(name, type) == false) {
-      this.nameIndex.push( { name: name, type: type } );
-   }
-};
-DataHandler.prototype.getNameIndex = function() {
-   return this.nameIndex;
-};
 DataHandler.prototype._inIndex = function(name, type) {
    return this._index.indexOf(name);
 };
