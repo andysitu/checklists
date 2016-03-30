@@ -189,17 +189,10 @@ DataHandler.prototype.clicked = function(name, index) {
    // CPU runs this, specifying table location clicked.
    // Changes subsequent data values in data & then returns
    // the html element.
-   var dataObj = this.getDataObj(name);
-   if (dataObj) {
-      var type = dataObj.type,
-      value = dataObj.data[index];
-   
-      var dataW = this.getDataWrapper(type),
-         newValue = dataW.clicked(value);
+   var data = this._getData(name);
 
-      this.changeData(name, index, newValue);
-      return this.dataToEle(name, type, index, newValue);
-   } else {
-      console.error("DataHandler.clicked given undefined data with name & index: " + name + " " + index);
-   }
+   var clickedElement = data.clicked(this._year, this._month, index);
+   return clickedElement;
+   // this.changeData(name, index, newValue);
+   //    return this.dataToEle(name, type, index, newValue);
 };
