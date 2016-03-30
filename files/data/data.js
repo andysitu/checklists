@@ -1,5 +1,7 @@
 function Data(name, type) {
    this._name = name;
+   if (type === undefined)
+      type = "click";
    this._type = type;
    this._dataWrapper = this._getDataWrapper(type);
    this._data = {};
