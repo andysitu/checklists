@@ -72,8 +72,8 @@ DataHandler.prototype.loadData = function() {
 DataHandler.prototype.getData = function(name, type) {
    // If type is unspecificed, then the data MUST exists.
    if (this._dataSet[name] == undefined)
-      this.addData(name, type);   
-   return this._dataSet[name]["data"][this._year + "_" + this._month];
+      this.addData(name, type);
+   return this._dataSet[name];
 };
 DataHandler.prototype.changeData = function(name, index, value) {
    this._dataSet[name]["data"][this._year + "_" + this._month][index] = value;
