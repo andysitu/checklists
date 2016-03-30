@@ -78,13 +78,13 @@ DataHandler.prototype.getData = function(name, type) {
 DataHandler.prototype.changeData = function(name, index, value) {
    this._dataSet[name]["data"][this._year + "_" + this._month][index] = value;
 };
-DataHandler.prototype.getDataObj = function(name) {
-   return {
-      name: name,
-      type: this._dataSet[name]["type"],
-      data: this._dataSet[name]["data"][this._year + "_" + this._month]
-   };
-};
+// DataHandler.prototype.getDataObj = function(name) {
+//    return {
+//       name: name,
+//       type: this._dataSet[name]["type"],
+//       data: this._dataSet[name]["data"][this._year + "_" + this._month]
+//    };
+// };
 
 // INDEX SECTION
 DataHandler.prototype._addIndex = function(name) {
