@@ -72,7 +72,7 @@ DataHandler.prototype.loadData = function() {
       this._dataSet = {};
    }
 };
-DataHandler.prototype.getData = function(name, type) {
+DataHandler.prototype._getData = function(name, type) {
    // If type is unspecificed, then the data MUST exists.
    if (this._dataSet[name] == undefined)
       this.addData(name, type);
