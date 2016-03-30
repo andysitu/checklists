@@ -144,10 +144,12 @@ DataHandler.prototype.getDate = function() {
 };
 
 DataHandler.prototype.getElement = function(name, i) {
+   var data = this.getData(name);
+
    if (i === undefined) {
-      return this._dataSet[name].getElements(this._year, this._month);
+      return data.getElements(this._year, this._month);
    } else {
-      return this._dataSet[name].getElement(this._year, this._month, i);
+      return data.getElement(this._year, this._month, i);
    }
 };
 
