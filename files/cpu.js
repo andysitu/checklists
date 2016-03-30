@@ -12,11 +12,11 @@ function CPU(name) {
 
 CPU.prototype.load = function() {
    this.tableHandler.load();
-   this.dataIntoTable();
+   // this.dataIntoTable();
 };
 
 CPU.prototype.dataIntoTable = function() {
-   var elementsArrays = this.dataHandler.getAllElementsWithName(name);
+   var elementsArrays = this.dataHandler.getElementsWithName(name);
    this.tableHandler.createRows(elementsArrays);
 };
 
@@ -34,7 +34,7 @@ CPU.prototype.getTypes = function() {
 
 CPU.prototype.addRow = function(name, type) {
    this.dataHandler.add(name, type);
-   var elements = this.dataHandler.getElement(name);
+   var elements = this.dataHandler.getElementsWithName(name);
    this.tableHandler.createRow(name, elements);
 };
 
