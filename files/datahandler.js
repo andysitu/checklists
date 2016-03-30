@@ -1,3 +1,6 @@
+/* NOTE: Data refers to data objects in this._dataSet.
+ * DataHandler should never deal with individual data points, ever.
+*/
 function DataHandler(id, year, month, defaultIndex) {
    this.id = id;
    this.types = ["click", "date"];
