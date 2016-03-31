@@ -58,9 +58,6 @@ DataHandler.prototype._getData = function(name, type) {
       this.addData(name, type);
    return this._dataSet[name];
 };
-DataHandler.prototype.changeData = function(name, index, value) {
-   this._dataSet[name]["data"][this._year + "_" + this._month][index] = value;
-};
 
 // INDEX SECTION
 DataHandler.prototype._addIndex = function(name) {
@@ -98,12 +95,6 @@ DataHandler.prototype.dataFromNameIndex = function() {
    }, this);
 };
 
-DataHandler.prototype.getDataWrapper = function(type) {
-   switch(type) {
-      case "click": return clickData;
-      case "date": return dateData;
-   }
-};
 DataHandler.prototype.getTypes = function() {
    var arr = [];
    this.types.forEach(function(type){
@@ -166,6 +157,4 @@ DataHandler.prototype.clicked = function(name, index) {
 
    var clickedElement = data.clicked(this._year, this._month, index);
    return clickedElement;
-   // this.changeData(name, index, newValue);
-   //    return this.dataToEle(name, type, index, newValue);
 };
