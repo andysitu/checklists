@@ -51,7 +51,7 @@ TableHandler.prototype.createRow = function(name, elementArray) {
       td;
 
     each(elementArray, function(element, i) {
-      td = makeElement("td", {id: name + "_Cell_" + i});
+      td = makeElement("td", {id: name + "_Cell_" + (i -1)});
       tr.appendChild(td).appendChild(element);  
     });
 
