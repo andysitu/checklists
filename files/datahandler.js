@@ -41,26 +41,6 @@ DataHandler.prototype._addData = function(dataObj) {
    }
 };
 
-// DataHandler.prototype.checkMonth = function(name) {
-//    this._dataSet[name].addMonth(this._year, this._month);
-// };
-// DataHandler.prototype._checkAllMonth = function() {
-//    each(this._dataSet, function(data) {
-//       data.addMonth(this._year, this._month);
-//    }, this);
-// };
-
-// DataHandler.prototype.addData = function(name, type) {
-//    if (type === undefined) type = "check";
-//    if (this._dataSet[name] === undefined) {
-//       this._dataSet[name] = {type: type, data: {}};
-//    }
-//    if (this._dataSet[name]["data"][this._year + "_" + this._month] === undefined) {
-//       var dataObj = this.getDataWrapper(type);
-//       var data = dataObj.makeData(this._year, this._month, name);
-//       this._dataSet[name]["data"][this._year + "_" + this._month] = data;
-//    }
-// };
 DataHandler.prototype.saveData = function() {
    storage.save(this.id, this._dataSet);
 };
@@ -81,13 +61,6 @@ DataHandler.prototype._getData = function(name, type) {
 DataHandler.prototype.changeData = function(name, index, value) {
    this._dataSet[name]["data"][this._year + "_" + this._month][index] = value;
 };
-// DataHandler.prototype.getDataObj = function(name) {
-//    return {
-//       name: name,
-//       type: this._dataSet[name]["type"],
-//       data: this._dataSet[name]["data"][this._year + "_" + this._month]
-//    };
-// };
 
 // INDEX SECTION
 DataHandler.prototype._addIndex = function(name) {
