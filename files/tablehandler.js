@@ -10,19 +10,19 @@ function TableHandler(cpuRef, id) {
 TableHandler.prototype.newTable = function() {
   // If there is a previous table, this will remove it.
   if (this.table_element !== undefined) {
-    this.deleteTable();
+    this._deleteTable();
   }
-  this.table_element = this.createTable();
+  this.table_element = this._createTable();
   this.rowsIndex = [];
   this.appendTable();
 };
 
-TableHandler.prototype.deleteTable = function() {
+TableHandler.prototype._deleteTable = function() {
   this.table_element.removeEventListener("click", this.clicked);
   var containerDiv = document.getElementById(this.id + "TableDiv");
   containerDiv.removeChild(this.table_element);
 };
-TableHandler.prototype.createTable = function() {
+TableHandler.prototype._createTable = function() {
   var table = makeElement("table", {id: this.tableId});
   table.addEventListener("click", this.clicked.bind(this))
   return table;
