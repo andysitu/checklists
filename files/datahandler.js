@@ -1,14 +1,13 @@
 /* NOTE: Data refers to data objects in this._dataSet.
  * DataHandler should never deal with individual data points, ever.
 */
-function DataHandler(id, year, month, defaultIndex) {
+function DataHandler(id, year, month) {
    this.id = id;
    this.types = ["click", "date"];
    this._year = year;
    this._month = month;
    this._dataSet = {};
    this._indexName = id + "_index";
-   this._defaultIndex = defaultIndex;
    this._index = [];
    this.loadData();
 }
@@ -73,8 +72,6 @@ DataHandler.prototype._loadIndex = function() {
    var loadedIndex = storage.load(this.indexName);
    if (loadedIndex !== null) {
       this.index = loadedIndex;
-   } else if (this._defaultIndex !== undefined) {
-      this.index = this._defaultIndex;
    } else {
       this.index = [];
    }

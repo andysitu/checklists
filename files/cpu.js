@@ -4,7 +4,7 @@ var t;
 function CPU(name) {
    this.name = name;
    var today = date.today();
-   t = this.dataHandler = new DataHandler(name, today.year, today.month, [{name: "Date", type: "date"}]);
+   t = this.dataHandler = new DataHandler(name, today.year, today.month);
    this.tableHandler = new TableHandler(this, name);
    this.load(today.year, today.month);
 }
