@@ -11,7 +11,7 @@ function CPU(name) {
 }
 
 CPU.prototype.load = function() {
-   this.tableHandler.load();
+   this.tableHandler.newTable();
    // this.dataIntoTable();
 };
 

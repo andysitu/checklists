@@ -7,7 +7,7 @@ function TableHandler(cpuRef, id) {
   this.rowsIndex = undefined;
 }
 
-TableHandler.prototype.load = function() {
+TableHandler.prototype.newTable = function() {
   // If there is a previous table, this will remove it.
   if (this.table_element !== undefined) {
     this.deleteTable();
