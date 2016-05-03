@@ -6,11 +6,11 @@ function CPU(name) {
    var today = date.today();
    t = this.dataHandler = new DataHandler(name, today.year, today.month, [{name: "Date", type: "date"}]);
    this.tableHandler = new TableHandler(this, name);
-   this.changeDate(today.year, today.month);
-   this.load();
+   this.load(today.year, today.month);
 }
 
-CPU.prototype.load = function() {
+CPU.prototype.load = function(year, month) {
+   this.changeDate(year, month);
    this.tableHandler.newTable();
    // this.dataIntoTable();
 };
