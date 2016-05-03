@@ -9,10 +9,10 @@ function CPU(name) {
    this.load(today.year, today.month);
 }
 
-CPU.prototype.load = function(year, month) {
-   this.changeDate(year, month);
+CPU.prototype.load = function() {
+   this.displayDate();
    this.tableHandler.newTable();
-   // this.dataIntoTable();
+   this.addRow("Date", "date");
 };
 
 CPU.prototype.dataIntoTable = function() {
@@ -49,8 +49,7 @@ CPU.prototype.showData = function() {
 
 CPU.prototype.changeDate = function(year, month) {
    this.dataHandler.changeDate(year, month);
-   this.displayDate();
-   // this.load();
+   this.load();
 };
 
 CPU.prototype.nextMonth = function(){this.changeDate(1);};
