@@ -44,7 +44,7 @@ CPU.prototype.displayDate = function() {
 };
 
 CPU.prototype.showData = function() {
-   console.log(this.dataHandler.dataSet);
+   console.log(this.dataHandler._dataSet);
 };
 
 CPU.prototype.changeDate = function(year, month) {
