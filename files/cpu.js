@@ -49,7 +49,7 @@ CPU.prototype.showData = function() {
 
 CPU.prototype.changeDate = function(year, month) {
    this.dataHandler.changeDate(year, month);
-   this.load();
+   this.displayDate();
 };
 
 CPU.prototype.nextMonth = function(){this.changeDate(1);};
