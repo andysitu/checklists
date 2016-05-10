@@ -9,7 +9,14 @@ function DataHandler(id, year, month) {
    this._dataSet = {};
    this._indexName = id + "_index";
    this._index = [];
-   this.loadData();
+   this.load();
+}
+
+DataHandler.prototype.load = function() {
+   // Loads index & Data from save, if it exists.
+   if (this._index.length == 0)
+      this._loadIndex();
+   this._loadData();
 }
 
 DataHandler.prototype.add = function(name, type) {
@@ -43,7 +50,7 @@ DataHandler.prototype._addData = function(dataObj) {
 DataHandler.prototype.saveData = function() {
    storage.save(this.id, this._dataSet);
 };
-DataHandler.prototype.loadData = function() {
+DataHandler.prototype._loadData = function() {
    var data = storage.load(this.id);
    if (data !== null)
       this._dataSet = data;
